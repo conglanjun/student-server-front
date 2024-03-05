@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/register",
+    "pages/user/login",
+    "pages/service/service",
+    "pages/service/detail",
+    "pages/user/my",
+    "pages/service/notice",
+    "pages/user/person",
+    "pages/service/addService",
+    "pages/service/consumption",
+    "pages/service/building",
+    "pages/service/room",
+    "pages/message/message",
+    "pages/message/addMessage",
+    "pages/message/detail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarBackgroundColor": "@navBgColor",
+    "navigationBarTextStyle": "@navTxtStyle",
+    "navigationBarTitleText": "uni-app",
+    "backgroundColor": "#F8F8F8"
+  },
+  "themeLocation": "theme.json",
+  "usingComponents": {}
+}

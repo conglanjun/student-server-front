@@ -1,0 +1,9 @@
+
+.center{text-align: center; vertical-align:middle;}
+.container { position: relative;
+}
+.right-aligned-button { position: absolute; right: 0;
+}
+.left-aligned-button { position: absolute; left: 0;
+}
+

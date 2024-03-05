@@ -1,0 +1,16 @@
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.container { position: relative;
+}
+.left-aligned-button { position: absolute; left: 0;
+}
+.uni-group {
+	display: flex;
+	align-items: center;
+}
+

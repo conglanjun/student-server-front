@@ -1,0 +1,224 @@
+<template>
+	<view class="content">
+		<view>
+			<button class="container right-aligned-button uni-bg-blue1" @click="my">我的</button>
+			<uni-title type="h1" title="寝室公告信息"></uni-title>
+		</view>
+		<view class="uni-margin-wrap">
+			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
+				:duration="duration">
+				<swiper-item v-for="(notice, index) in noticeList" :key="index">
+					<view class="swiper-item uni-bg-grey">
+						<text style="word-break:break-all;">
+							{{notice.text}}
+						</text>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<uni-section title="人员管理" v-show="showPersonManage" type="circle" titleColor="#a17b17">
+			<uni-card :is-shadow="true" @click="onClick('person')" class="center">
+				<image style="width: 100px; height: 100px;" src="/static/person.png"></image><br/>
+				<text>人员管理</text>
+			</uni-card>
+		</uni-section>
+		<uni-section title="公告管理" v-show="showNoticeManage" type="square" titleColor="#a17b17">
+			<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
+				<image style="width: 100px; height: 100px;" src="/static/notice.png"></image><br/>
+				<text>公告信息管理</text>
+			</uni-card>
+		</uni-section>
+		<uni-section title="维修管理" v-show="showToolManage" type="line">
+			<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
+				<image style="width: 100px; height: 100px; align-content: center;" src="/static/tool1.png"></image><br/>
+				<text>维修列表展示，详情查看</text>
+			</uni-card>
+		</uni-section>
+		<uni-section title="耗材管理" v-show="showConsumptionManage" type="line">
+			<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
+				<image style="width: 100px; height: 100px; align-content: center;" src="/static/consumption.png"></image><br/>
+				<text>耗材列表展示，详情查看</text>
+			</uni-card>
+		</uni-section>
+		<uni-section title="宿舍管理" v-show="showBuildingManage" type="line">
+			<uni-card :is-shadow="true" @click="onClick('building')" class="center">
+				<image style="width: 100px; height: 100px; align-content: center;" src="/static/building.png"></image><br/>
+				<text>宿舍列表展示，详情查看</text>
+			</uni-card>
+		</uni-section>
+		<uni-section title="留言管理" type="line">
+			<uni-card :is-shadow="true" @click="onClick('message')" class="center">
+				<image style="width: 100px; height: 100px; align-content: center;" src="/static/message.png"></image><br/>
+				<text>留言信息展示，详情查看</text>
+			</uni-card>
+		</uni-section>
+	</view>
+</template>
+
+<script>
+	import {set, get} from '@/common/storage.js'
+	export default {
+		data() {
+			return {
+				showPersonManage: false,
+				showNoticeManage: false,
+				showToolManage: false,
+				showConsumptionManage: false,
+				showBuildingManage: false,
+				toolCover: '/static/tool1.png',
+				background: ['color1', 'color2', 'color3'],
+				indicatorDots: true,
+				autoplay: true,
+				interval: 5000,
+				duration: 500,
+				noticeList:[],
+				user: {
+					name:'',
+					phone:'',
+					identity:'',
+					role:{
+						id:0,
+						name:'',
+						displayName:''
+					}
+				}
+			}
+		},
+		onLoad() {
+			uni.request({
+				// #ifdef H5
+				url: 'api/noticeList',
+				// #endif
+				// #ifdef MP-WEIXIN
+				url: this.$api.defConfig.def().baseUrl + 'api/noticeList',
+				// #endif
+				method: 'GET',
+				success: (res) => {
+					if (res.data.code === 200) {
+						this.noticeList = res.data.noticeList
+					}
+				},
+				fail: (res) => {
+					
+				}
+			})
+			
+			var isLogin = get('isLogin')
+			console.log(isLogin)
+			var loginInfo = get('loginInfo')
+			console.log(loginInfo)
+			if (isLogin && loginInfo) {
+				this.user = loginInfo
+			} else {
+				setTimeout(()=>{
+					uni.navigateTo({
+					  url: '/pages/user/login'
+					})
+				}, 1000)
+				uni.showToast({
+				  title: '请登录！',
+				  icon: 'none'
+				})
+			}
+			this.showToolManage = true
+			if (this?.user?.role?.name === 'admin') {
+				this.showPersonManage = true
+				this.showNoticeManage = true
+				this.showConsumptionManage = true
+				this.showBuildingManage = true
+			} else if (this?.user?.role?.name === 'student') {
+				this.showPersonManage = false
+				this.showNoticeManage = false
+				this.showConsumptionManage = false
+				this.showBuildingManage = false
+			} else if (this?.user?.role?.name === 'maintenance-manager' || this?.user?.role?.name === 'maintainer') {
+				this.showPersonManage = false
+				this.showNoticeManage = false
+				this.showConsumptionManage = true
+				this.showBuildingManage = false
+			} else if (this?.user?.role?.name === 'dormitory-manager') {
+				this.showPersonManage = false
+				this.showNoticeManage = false
+				this.showConsumptionManage = false
+				this.showBuildingManage = true
+			} else if (this?.user?.role?.name === "none") {
+				this.showToolManage = false
+			}
+		},
+		methods: {
+			my() {
+				uni.navigateTo({
+					url: "/pages/user/my"
+				})
+			},
+			onClick(type) {
+				if (type === 'notice') {
+					uni.redirectTo({
+						url: "/pages/service/notice"
+					})
+				} else if (type === 'person') {
+					uni.redirectTo({
+						url: "/pages/user/person"
+					})
+				} else if (type === 'tool') {
+					uni.redirectTo({
+						url: "/pages/service/service?creatorId=" + get('loginInfo').id
+					})
+				} else if (type === 'consumption') {
+					uni.redirectTo({
+						url: "/pages/service/consumption"
+					})
+				} else if (type === 'building') {
+					uni.redirectTo({
+						url: "/pages/service/building"
+					})
+				} else if (type === 'message') {
+					uni.redirectTo({
+						url: "/pages/message/message"
+					})
+				}
+			}
+		}
+	}
+</script>
+<style>
+	.center{text-align: center; vertical-align:middle;}
+	.container { position: relative; } 
+	.right-aligned-button { position: absolute; right: 0; }
+	.left-aligned-button { position: absolute; left: 0; }
+	.uni-margin-wrap {
+		width: 690rpx;
+		width: 100%;
+	}
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.swiper {
+		height: 300rpx;
+	}
+	.swiper-item {
+		display: block;
+		height: 300rpx;
+		line-height: 300rpx;
+		text-align: center;
+	}
+	.swiper-list {
+		margin-top: 40rpx;
+		margin-bottom: 0;
+	}
+	.uni-common-mt {
+		margin-top: 60rpx;
+		position: relative;
+	}
+	.info {
+		position: absolute;
+		right: 20rpx;
+	}
+	.uni-padding-wrap {
+		width: 550rpx;
+		padding: 0 100rpx;
+	}
+</style>
