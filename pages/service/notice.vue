@@ -1,5 +1,4 @@
 <template>
-	
 	<view>
 		<view class="container">
 			<uni-breadcrumb separator="/">
@@ -16,14 +15,20 @@
 			<view class="uni-container">
 				<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
 					<uni-tr>
-						<uni-th width="100" align="center">公告内容</uni-th>
-						<uni-th width="150" align="center">创建时间</uni-th>
+						<uni-th width="100" align="center">创建时间</uni-th>
+						<uni-th width="150" align="center">公告内容</uni-th>
+						<uni-th width="100" align="center">图片内容</uni-th>
 						<uni-th width="80" align="center">设置</uni-th>
 					</uni-tr>
 					<uni-tr v-for="(item, index) in tableData" :key="index">
 						<uni-td>{{ item.displayCreateTime }}</uni-td>
 						<uni-td>
 							<view class="name">{{ item.displayText }}</view>
+						</uni-td>
+						<uni-td>
+							<view>
+								<image style="max-width: 70px; max-height: 70px;" :src="item.imageAddress" mode="aspectFit"></image>
+							</view>
 						</uni-td>
 						<uni-td>
 							<view class="uni-group">
@@ -34,9 +39,34 @@
 					</uni-tr>
 				</uni-table>
 				<uni-popup ref="inputDialog" type="dialog">
-					<uni-popup-dialog ref="inputClose"  mode="input" title="公告信息" :value="dialogText"
-						placeholder="请输入内容" @confirm="dialogInputConfirm">
-					</uni-popup-dialog>
+					<view class="popConfig" >
+						<uni-forms>
+							<uni-forms-item label="公告信息" name="dialogText">
+								<uni-easyinput class="uni-row" type="text" v-model="dialogText" placeholder="请输入内容" />
+							</uni-forms-item>
+							<uni-forms-item label="公共图片" name="imageAddress">
+								<view>
+									<image style="max-width: 70px; max-height: 70px;" :src="imageAddress" mode="aspectFit"></image>
+								</view>
+							</uni-forms-item>
+							<view>
+								<button  class="container uni-bg-blue1" @click="uploadImage" style="background-color: #61CD00;font-size: 8px; color: white; margin: 10px 10px;">上传图片</button>
+							</view>
+						</uni-forms>
+	<!-- 					<uni-popup-dialog ref="inputClose"  mode="input" title="公告信息" :value="dialogText"
+							placeholder="请输入内容" @confirm="dialogInputConfirm">
+						</uni-popup-dialog> -->
+						<view>
+							<uni-row class="demo-uni-row">
+								<uni-col :span="12">
+									<button class="container uni-bg-blue1" @click="addDialogClose" style="background-color: #4ba5f6;font-size: 8px; color: white; margin: 10px 10px;">关闭</button>
+								</uni-col>
+								<uni-col :span="12">
+									<button  class="container uni-bg-blue1" @click="dialogInputConfirm" style="background-color: #b88e22;font-size: 8px; color: white; margin: 10px 10px;">确认</button>
+								</uni-col>
+							</uni-row>
+						</view>
+					</view>
 				</uni-popup>
 				<!-- 提示信息弹窗 -->
 				<uni-popup ref="message" type="message">
@@ -63,6 +93,7 @@
 				msgType: 'success',
 				type: 'center',
 				messageText: '成功提示',
+				imageAddress: '',
 				routes: [
 					{
 						to: "/pages/index/index",
@@ -75,14 +106,44 @@
 			this.loadNoticeList()
 		},
 		methods: {
+			uploadImage() {
+				uni.chooseImage({
+					success: (chooseImageRes) => {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						uni.uploadFile({
+							// #ifdef H5
+							url: 'api/fileUpload',
+							// #endif
+							// #ifdef MP-WEIXIN
+							url: this.$api.defConfig.def().baseUrl + 'api/fileUpload',
+							// #endif
+							filePath: tempFilePaths[0],
+							name: 'file',
+							formData: {
+								'user': 'test'
+							},
+							success: (uploadFileRes) => {
+								this.imageAddress = uploadFileRes.data;
+								this.selectedItem.imageAddress = this.imageAddress;
+								uni.showToast({
+								  title: '上传成功',
+								  icon: 'none'
+								})
+							}
+						})
+					}
+				})
+			},
 			inputDialogToggle(item) {
 				this.selectedItem = item
 				this.dialogText = item.text
+				this.imageAddress = item.imageAddress
 				this.$refs.inputDialog.open()
 			},
 			deleteNotice(item) {
 				this.selectedItem = item
 				this.dialogText = item.text
+				this.imageAddress = item.imageAddress
 				this.msgType = 'success'
 				this.$refs.alertDialog.open()
 			},
@@ -107,7 +168,11 @@
 				})
 				this.selectedItem = null
 				this.dialogText = ''
+				this.imageAddress = ''
 			},			
+			addDialogClose() {
+				this.$refs.inputDialog.close()
+			},
 			dialogClose() {
 				console.log('点击关闭')
 			},
@@ -124,9 +189,10 @@
 					// #endif
 					// url: "api/notice/update",
 					data: {
-						text: val,
+						text: this.selectedItem.text,
 						id: this.selectedItem.id,
-						createTime: this.selectedItem.createTime
+						createTime: this.selectedItem.createTime,
+						imageAddress: this.selectedItem.imageAddress
 					},
 					method: "POST",
 					success: (res) => {
@@ -140,6 +206,7 @@
 				})
 				this.selectedItem = null
 				this.dialogText = ''
+				this.imageAddress = ''
 			},
 			loadNoticeList() {
 				uni.request({
@@ -165,6 +232,20 @@
 </script>
 
 <style>
+@import '../../common/uni.css';
+.popConfig {
+		z-index: 999;
+		background-color: white;
+		box-sizing: border-box;
+		padding: 25rpx;
+		width: 60vw;
+		min-height: 300rpx;
+		border-radius: 15rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+}
 .content {
 	display: flex;
 	flex-direction: column;
@@ -176,5 +257,11 @@
 .uni-group {
 	display: flex;
 	align-items: center;
+}	
+.demo-uni-row {
+	margin-bottom: 10px;
+	/* #ifdef MP-TOUTIAO || MP-QQ || MP-BAIDU */
+	display: block;
+	/* #endif */
 }
 </style>

@@ -1,5 +1,12 @@
 <template>
 	<view class="content">
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
+		</view>
 		<view>
 			<button class="container left-aligned-button uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增寝室</button>
 			<uni-title type="h4" title="寝室列表" style="font-size: 12px"></uni-title>
@@ -71,7 +78,13 @@
 				loading: false,
 				showManage: false,
 				msgType: 'success',
-				buildingId: ''
+				buildingId: '',
+				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
+				]
 			}
 		},		
 		onLoad(param) {

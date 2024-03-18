@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
+		</view>
 		<view class="content">
 			<uni-forms-item label="姓名" name="name">
 				<uni-easyinput type="text" v-model="user.name" :disabled="true"/>
@@ -27,7 +34,13 @@
 					name:'',
 					phone:'',
 					role: {}
-				}
+				},
+				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
+				]
 			}
 		},
 		onLoad() {

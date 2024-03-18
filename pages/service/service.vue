@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
+			</view>
 		<view>
 			<button class="container right-aligned-button uni-bg-blue1" @click="addService" style="background-color: #b88e22;font-size: 12px; color: white;width: 80ps;">提交维修单</button>
 			<button class="container right-aligned-button uni-bg-blue1" @click="homePage" style="background-color: #007FD9;font-size: 12px; color: white; margin-right: 100px;">首页</button>
@@ -26,6 +33,10 @@
 				items:[
 				],
 				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
 				],
 				creatorId: 0
 			}
@@ -57,6 +68,8 @@
 					requestUrl += '?creatorId=' + get('loginInfo').id
 				} else if (userInfo?.role?.name === "maintainer") {
 					requestUrl += '?maintainerId=' + get('loginInfo').id
+				} else if (userInfo?.role?.name === "dormitory-manager") {
+					requestUrl += '?dormitoryManagerId=' + get('loginInfo').id
 				}
 				uni.request({
 					// #ifdef H5

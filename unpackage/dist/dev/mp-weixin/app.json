@@ -14,7 +14,8 @@
     "pages/service/room",
     "pages/message/message",
     "pages/message/addMessage",
-    "pages/message/detail"
+    "pages/message/detail",
+    "pages/service/serviceType"
   ],
   "subPackages": [],
   "window": {

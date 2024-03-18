@@ -2,6 +2,8 @@
   "navigationBarTitleText": "订单列表",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "uni-breadcrumb": "/uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb",
+    "uni-breadcrumb-item": "/uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item",
     "uni-title": "/uni_modules/uni-title/components/uni-title/uni-title",
     "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
     "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item"

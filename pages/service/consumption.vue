@@ -75,6 +75,7 @@
 		data() {
 			return {
 				dialogText:'',
+				type: '',
 				formData: {
 					
 				},
@@ -92,11 +93,13 @@
 						to: "/pages/index/index",
 						name: "首页",
 					},
-				]
+				],
+				loginInfo: {}
 			}
 		},
 		onLoad() {
 			var loginInfo = get('loginInfo')
+			this.loginInfo = loginInfo
 			if (loginInfo?.role?.name === "admin" || loginInfo?.role?.name === "maintenance-manager") {
 				this.showManage = true
 			} else {
@@ -111,9 +114,11 @@
 				} else if (type === 'consumption') {
 					this.selectedItem = item
 					this.dialogText = item.text
+					this.type = 'consumption'
 					this.$refs.inputDialog.open()
 				} else if (type === 'update') {
 					this.formData = item
+					this.type = 'update'
 					this.$refs.addDialog.open()
 				}
 			},
@@ -221,6 +226,24 @@
 						this.loadConsumptionList()
 						this.consumptionNum = 0
 						this.selectedItem = {}
+					}
+				})
+				uni.request({
+					// #ifdef H5
+					url: 'api/consumptionRecord/update',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/consumptionRecord/update',
+					// #endif
+					method: 'POST',
+					data: {
+						consumptionNumber: this.consumptionNum,
+						consumptionId: this.selectedItem.id,
+						creatorId: this.loginInfo.id
+					},
+					method: "POST",
+					success: (res) => {
+						console.log('update consumption record successfully!' + res)
 					}
 				})
 			},

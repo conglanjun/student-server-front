@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
+		</view>
 		<uni-forms :modelValue="formData">
 			<uni-forms-item label="维修单标题" name="title" class="form">
 				<uni-easyinput type="text" v-model="formData.title" placeholder="请输入订单标题" />
@@ -8,11 +15,11 @@
 				<uni-easyinput type="textarea" v-model="formData.detail" placeholder="请输入订单详情" />
 			</uni-forms-item>
 			<uni-forms-item label="维修类别" name="title" class="form">
-				<view class="demo-uni-col">
+<!-- 				<view class="demo-uni-col">
 					<button style="position: absolute; left: 0px;font-size: 10px;background-color: #4ba5f6; width: 60px;" @click="updateServieType">更新</button>
 					<button style="position: absolute; left: 60px;font-size: 10px;background-color: #83ff92; width: 60px;" @click="addServieType">新增</button>
 					<button style="position: absolute; left: 120px;font-size: 10px;background-color: #ffb5b5; width: 60px;" @click="deleteServiceType">删除</button>
-				</view>
+				</view> -->
 				<uni-row class="demo-uni-row">
 					<uni-col :span="12">
 						<uni-data-select
@@ -100,7 +107,13 @@
 				type: 'center',
 				messageText: '成功提示',
 				buildingList:[],
-				roomList:[]
+				roomList:[],
+				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
+				]
 			}
 		},
 		onLoad(param) {
@@ -195,7 +208,9 @@
 				})	
 			},
 			addItem() {
-				if (typeof this.value === "undefined"  || this.value === '' || this.formData.title === '' || this.formData.detail === '') {
+				if (typeof this.value === "undefined"  || this.value === '' || this.value === 0 || this.formData.title === '' || this.formData.detail === '' || 
+				typeof this.selectedItem.room.buildingId === "undefined"  || this.selectedItem.room.buildingId === '' || this.selectedItem.room.buildingId === 0 || 
+				typeof this.selectedItem.room.id === "undefined"  || this.selectedItem.room.id === '' || this.selectedItem.room.id === 0) {
 					uni.showToast({
 					  title: '请填写完维修单内容再提交',
 					  icon: 'error'
@@ -319,7 +334,7 @@
 			dialogUpdateConfirm() {
 				if (this.value === '') {
 					uni.showToast({
-					  title: '行选择要修改的类别',
+					  title: '请选择要修改的类别',
 					  icon: 'error'
 					})
 					return

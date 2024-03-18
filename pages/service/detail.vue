@@ -1,12 +1,11 @@
 <template>
 	<view>
-		<view class="page_pingjia2">
-<!-- 			<view class="heti">
-				<view class="name" style="font-size: 14px; font-weight: 600;">{{item.title}}</view>
-				<view style="display: flex; margin-top: 20px;">
-					<view class="miaoshu" style="font-size: 12px;">{{item.detail}}</view>
-				</view>
-			</view> -->
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
 		</view>
 		<view class="page_pingjia1">
 			<uni-forms :modelValue="item">
@@ -42,6 +41,11 @@
 				<view style="margin-bottom:22px;">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">创建者: 	{{item.creator.name}}</span>
+					</uni-text>
+				</view>
+				<view>
+					<uni-text>
+						<span style="font-size: 14px; color: #606266;">报修人电话: 	{{item.creator.phone}}</span>
 					</uni-text>
 				</view>
 				<view >
@@ -104,6 +108,12 @@
 				dispatchDone: false,
 				beforeFinished: true,
 				selectedMaintainerId: '',
+				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
+				]
 			}
 		},
 		onLoad(param){

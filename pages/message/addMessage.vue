@@ -15,6 +15,7 @@
 				</uni-popup-dialog>
 			</uni-popup> -->
 			
+			<!-- <button @click="uploadImage">上传图片</button> -->
 			<button @click="addItem">创建留言</button>
 		</uni-forms>
 	</view>
@@ -58,7 +59,7 @@
 					data: {
 					  title: this.formData.title,
 					  message: this.formData.message,
-					  userId: this.creatorId
+					  userId: this.creatorId,
 					},
 					success: (res) => {
 						uni.showToast({

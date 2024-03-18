@@ -9,49 +9,141 @@
 				:duration="duration">
 				<swiper-item v-for="(notice, index) in noticeList" :key="index">
 					<view class="swiper-item uni-bg-grey">
-						<text style="word-break:break-all;">
+						<image :src="notice.imageAddress" style="max-width: 200px; max-height: 200px;margin: 10px;"></image>
+<!-- 						<text style="word-break:break-all;">
 							{{notice.text}}
-						</text>
+						</text> -->
 					</view>
 				</swiper-item>
 			</swiper>
 		</view>
-		<uni-section title="人员管理" v-show="showPersonManage" type="circle" titleColor="#a17b17">
-			<uni-card :is-shadow="true" @click="onClick('person')" class="center">
-				<image style="width: 100px; height: 100px;" src="/static/person.png"></image><br/>
-				<text>人员管理</text>
-			</uni-card>
-		</uni-section>
-		<uni-section title="公告管理" v-show="showNoticeManage" type="square" titleColor="#a17b17">
-			<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
-				<image style="width: 100px; height: 100px;" src="/static/notice.png"></image><br/>
-				<text>公告信息管理</text>
-			</uni-card>
-		</uni-section>
-		<uni-section title="维修管理" v-show="showToolManage" type="line">
-			<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
-				<image style="width: 100px; height: 100px; align-content: center;" src="/static/tool1.png"></image><br/>
-				<text>维修列表展示，详情查看</text>
-			</uni-card>
-		</uni-section>
-		<uni-section title="耗材管理" v-show="showConsumptionManage" type="line">
-			<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
-				<image style="width: 100px; height: 100px; align-content: center;" src="/static/consumption.png"></image><br/>
-				<text>耗材列表展示，详情查看</text>
-			</uni-card>
-		</uni-section>
-		<uni-section title="宿舍管理" v-show="showBuildingManage" type="line">
-			<uni-card :is-shadow="true" @click="onClick('building')" class="center">
-				<image style="width: 100px; height: 100px; align-content: center;" src="/static/building.png"></image><br/>
-				<text>宿舍列表展示，详情查看</text>
-			</uni-card>
-		</uni-section>
-		<uni-section title="留言管理" type="line">
-			<uni-card :is-shadow="true" @click="onClick('message')" class="center">
-				<image style="width: 100px; height: 100px; align-content: center;" src="/static/message.png"></image><br/>
-				<text>留言信息展示，详情查看</text>
-			</uni-card>
-		</uni-section>
+		<uni-row v-show="showAdmin">
+			<uni-col :span="8">
+				<uni-section title="人员管理" type="circle" titleColor="#a17b17" style="font-size: 10px;">
+					<uni-card :is-shadow="true" @click="onClick('person')" class="center">
+						<image style="width: 30px; height: 30px;" src="/static/person.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="8">
+				<uni-section title="公告管理" type="square" titleColor="#a17b17">
+					<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
+						<image style="width: 30px; height: 30px;" src="/static/notice.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="8">
+				<uni-section title="维修类型" type="square" titleColor="#a17b17">
+					<uni-card :is-shadow="true" @click="onClick('serviceType')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/serviceType.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-show="showAdmin">
+			<uni-col :span="8">
+				<uni-section title="宿舍管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/building.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="8">
+				<uni-section title="耗材管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="8">
+				<uni-section title="耗材记录" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-show="showMaintenance">
+			<uni-col :span="12">
+				<uni-section title="耗材管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="维修管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-show="showMaintenance">
+			<uni-col :span="12">
+				<uni-section title="留言管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="耗材记录" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		</uni-row>
+		<uni-row v-show="showDormitory">	
+			<uni-col :span="12">
+				<uni-section title="维修管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="留言管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-show="showDormitory">
+			<uni-col :span="12">
+				<uni-section title="宿舍管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/building.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>		
+		    <uni-col :span="12">
+				<uni-section title="公告管理" type="square" titleColor="#a17b17">
+					<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
+						<image style="width: 30px; height: 30px;" src="/static/notice.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-show="showStudent">
+			<uni-col :span="12">
+				<uni-section title="维修管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="留言管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
 	</view>
 </template>
 
@@ -120,61 +212,71 @@
 				  icon: 'none'
 				})
 			}
-			this.showToolManage = true
 			if (this?.user?.role?.name === 'admin') {
-				this.showPersonManage = true
-				this.showNoticeManage = true
-				this.showConsumptionManage = true
-				this.showBuildingManage = true
+				this.showAdmin = true
+				this.showStudent = true
+				this.showMaintenance = true
+				this.showDormitory = true
 			} else if (this?.user?.role?.name === 'student') {
-				this.showPersonManage = false
-				this.showNoticeManage = false
-				this.showConsumptionManage = false
-				this.showBuildingManage = false
+				this.showStudent = true
+				this.showAdmin = false
+				this.showMaintenance = false
+				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'maintenance-manager' || this?.user?.role?.name === 'maintainer') {
-				this.showPersonManage = false
-				this.showNoticeManage = false
-				this.showConsumptionManage = true
-				this.showBuildingManage = false
+				this.showStudent = false
+				this.showAdmin = false
+				this.showMaintenance = true
+				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'dormitory-manager') {
-				this.showPersonManage = false
-				this.showNoticeManage = false
-				this.showConsumptionManage = false
-				this.showBuildingManage = true
+				this.showStudent = false
+				this.showAdmin = false
+				this.showMaintenance = false
+				this.showDormitory = true
 			} else if (this?.user?.role?.name === "none") {
-				this.showToolManage = false
+				this.showStudent = false
+				this.showAdmin = false
+				this.showMaintenance = false
+				this.showDormitory = false
 			}
 		},
 		methods: {
 			my() {
-				uni.navigateTo({
+				uni.reLaunch({
 					url: "/pages/user/my"
 				})
 			},
 			onClick(type) {
 				if (type === 'notice') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/service/notice"
 					})
 				} else if (type === 'person') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/user/person"
 					})
 				} else if (type === 'tool') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/service/service?creatorId=" + get('loginInfo').id
 					})
 				} else if (type === 'consumption') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/service/consumption"
 					})
+				} else if (type === 'consumptionRecord') {
+					uni.reLaunch({
+						url: "/pages/service/consumptionRecord"
+					})
 				} else if (type === 'building') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/service/building"
 					})
 				} else if (type === 'message') {
-					uni.redirectTo({
+					uni.reLaunch({
 						url: "/pages/message/message"
+					})
+				} else if (type === 'serviceType') {
+					uni.reLaunch({
+						url: "/pages/service/serviceType"
 					})
 				}
 			}
