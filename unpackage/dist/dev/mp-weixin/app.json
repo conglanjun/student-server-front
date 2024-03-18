@@ -15,7 +15,9 @@
     "pages/message/message",
     "pages/message/addMessage",
     "pages/message/detail",
-    "pages/service/serviceType"
+    "pages/service/serviceType",
+    "pages/service/consumptionRecord",
+    "pages/user/changeSecret"
   ],
   "subPackages": [],
   "window": {

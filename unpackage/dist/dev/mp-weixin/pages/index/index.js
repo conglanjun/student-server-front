@@ -101,19 +101,19 @@ var components
 try {
   components = {
     uniTitle: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-title/components/uni-title/uni-title */ "uni_modules/uni-title/components/uni-title/uni-title").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-title/components/uni-title/uni-title.vue */ 162))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-title/components/uni-title/uni-title */ "uni_modules/uni-title/components/uni-title/uni-title").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-title/components/uni-title/uni-title.vue */ 178))
     },
     uniRow: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 169))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 185))
     },
     uniCol: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 176))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 192))
     },
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 183))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 199))
     },
     uniCard: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 190))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 206))
     },
   }
 } catch (e) {
@@ -277,9 +277,62 @@ var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      showAdmin: false,
+      showMaintenance: false,
+      showDormitory: false,
+      showStudent: false,
       showPersonManage: false,
       showNoticeManage: false,
       showToolManage: false,
@@ -307,7 +360,6 @@ var _default = {
   onLoad: function onLoad() {
     var _this = this,
       _this$user,
-      _this$user$role,
       _this$user2,
       _this$user2$role,
       _this$user3,
@@ -315,7 +367,11 @@ var _default = {
       _this$user4,
       _this$user4$role,
       _this$user5,
-      _this$user5$role;
+      _this$user5$role,
+      _this$user6,
+      _this$user6$role,
+      _this$user7,
+      _this$user7$role;
     uni.request({
       url: this.$api.defConfig.def().baseUrl + 'api/noticeList',
       method: 'GET',
@@ -343,61 +399,75 @@ var _default = {
         icon: 'none'
       });
     }
-    if ((this === null || this === void 0 ? void 0 : (_this$user = this.user) === null || _this$user === void 0 ? void 0 : (_this$user$role = _this$user.role) === null || _this$user$role === void 0 ? void 0 : _this$user$role.name) === 'admin') {
+    console.log(this === null || this === void 0 ? void 0 : (_this$user = this.user) === null || _this$user === void 0 ? void 0 : _this$user.role.name);
+    if ((this === null || this === void 0 ? void 0 : (_this$user2 = this.user) === null || _this$user2 === void 0 ? void 0 : (_this$user2$role = _this$user2.role) === null || _this$user2$role === void 0 ? void 0 : _this$user2$role.name) === 'admin') {
       this.showAdmin = true;
-      this.showStudent = true;
-      this.showMaintenance = true;
-      this.showDormitory = true;
-    } else if ((this === null || this === void 0 ? void 0 : (_this$user2 = this.user) === null || _this$user2 === void 0 ? void 0 : (_this$user2$role = _this$user2.role) === null || _this$user2$role === void 0 ? void 0 : _this$user2$role.name) === 'student') {
+      this.showStudent = false;
+      this.showMaintenance = false;
+      this.showDormitory = false;
+    } else if ((this === null || this === void 0 ? void 0 : (_this$user3 = this.user) === null || _this$user3 === void 0 ? void 0 : (_this$user3$role = _this$user3.role) === null || _this$user3$role === void 0 ? void 0 : _this$user3$role.name) === 'student') {
       this.showStudent = true;
       this.showAdmin = false;
       this.showMaintenance = false;
       this.showDormitory = false;
-    } else if ((this === null || this === void 0 ? void 0 : (_this$user3 = this.user) === null || _this$user3 === void 0 ? void 0 : (_this$user3$role = _this$user3.role) === null || _this$user3$role === void 0 ? void 0 : _this$user3$role.name) === 'maintenance-manager' || (this === null || this === void 0 ? void 0 : (_this$user4 = this.user) === null || _this$user4 === void 0 ? void 0 : (_this$user4$role = _this$user4.role) === null || _this$user4$role === void 0 ? void 0 : _this$user4$role.name) === 'maintainer') {
+    } else if ((this === null || this === void 0 ? void 0 : (_this$user4 = this.user) === null || _this$user4 === void 0 ? void 0 : (_this$user4$role = _this$user4.role) === null || _this$user4$role === void 0 ? void 0 : _this$user4$role.name) === 'maintenance-manager' || (this === null || this === void 0 ? void 0 : (_this$user5 = this.user) === null || _this$user5 === void 0 ? void 0 : (_this$user5$role = _this$user5.role) === null || _this$user5$role === void 0 ? void 0 : _this$user5$role.name) === 'maintainer') {
       this.showStudent = false;
       this.showAdmin = false;
       this.showMaintenance = true;
       this.showDormitory = false;
-    } else if ((this === null || this === void 0 ? void 0 : (_this$user5 = this.user) === null || _this$user5 === void 0 ? void 0 : (_this$user5$role = _this$user5.role) === null || _this$user5$role === void 0 ? void 0 : _this$user5$role.name) === 'dormitory-manager') {
+    } else if ((this === null || this === void 0 ? void 0 : (_this$user6 = this.user) === null || _this$user6 === void 0 ? void 0 : (_this$user6$role = _this$user6.role) === null || _this$user6$role === void 0 ? void 0 : _this$user6$role.name) === 'dormitory-manager') {
       this.showStudent = false;
       this.showAdmin = false;
       this.showMaintenance = false;
       this.showDormitory = true;
+    } else if ((this === null || this === void 0 ? void 0 : (_this$user7 = this.user) === null || _this$user7 === void 0 ? void 0 : (_this$user7$role = _this$user7.role) === null || _this$user7$role === void 0 ? void 0 : _this$user7$role.name) === "none") {
+      this.showStudent = false;
+      this.showAdmin = false;
+      this.showMaintenance = false;
+      this.showDormitory = false;
     }
+    console.log('this.showAdmin:' + this.showAdmin);
+    console.log('this.showStudent:' + this.showStudent);
+    console.log('this.showMaintenance:' + this.showMaintenance);
+    console.log('this.showDormitory:' + this.showDormitory);
   },
   methods: {
     my: function my() {
-      uni.navigateTo({
+      uni.reLaunch({
         url: "/pages/user/my"
       });
     },
     onClick: function onClick(type) {
       if (type === 'notice') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/service/notice"
         });
       } else if (type === 'person') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/user/person"
         });
       } else if (type === 'tool') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/service/service?creatorId=" + (0, _storage.get)('loginInfo').id
         });
       } else if (type === 'consumption') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/service/consumption"
         });
+      } else if (type === 'consumptionRecord') {
+        uni.reLaunch({
+          url: "/pages/service/consumptionRecord"
+        });
       } else if (type === 'building') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/service/building"
         });
       } else if (type === 'message') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/message/message"
         });
       } else if (type === 'serviceType') {
-        uni.redirectTo({
+        uni.reLaunch({
           url: "/pages/service/serviceType"
         });
       }

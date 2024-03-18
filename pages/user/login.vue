@@ -9,9 +9,24 @@
 			</uni-forms-item>
 			<button @click="login">登录</button>
 		</uni-forms>
-		<navigator url="/pages/user/register">
-			注册账号	
-		</navigator>
+		<view>
+			<uni-row class="demo-uni-row">
+				<uni-col :span="12">
+					<navigator url="/pages/user/changeSecret">
+						<uni-text style="margin: 10px;">
+							<span style="font-size: 14px;">忘记密码</span>
+						</uni-text>
+					</navigator>
+				</uni-col>
+				<uni-col :span="12">
+					<navigator url="/pages/user/register">
+						<uni-text style="margin: 10px;">
+							<span style="font-size: 14px;">注册账号</span>
+						</uni-text>
+					</navigator>
+				</uni-col>
+			</uni-row>
+		</view>
 	</view>
 </template>
 

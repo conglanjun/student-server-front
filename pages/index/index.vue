@@ -17,7 +17,7 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<uni-row v-show="showAdmin">
+		<uni-row v-if="showAdmin">
 			<uni-col :span="8">
 				<uni-section title="人员管理" type="circle" titleColor="#a17b17" style="font-size: 10px;">
 					<uni-card :is-shadow="true" @click="onClick('person')" class="center">
@@ -40,7 +40,7 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
-		<uni-row v-show="showAdmin">
+		<uni-row v-if="showAdmin">
 			<uni-col :span="8">
 				<uni-section title="宿舍管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
@@ -63,7 +63,7 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
-		<uni-row v-show="showMaintenance">
+		<uni-row v-if="showMaintenance">
 			<uni-col :span="12">
 				<uni-section title="耗材管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
@@ -79,7 +79,7 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
-		<uni-row v-show="showMaintenance">
+		<uni-row v-if="showMaintenance">
 			<uni-col :span="12">
 				<uni-section title="留言管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
@@ -96,7 +96,7 @@
 			</uni-col>
 		</uni-row>
 		</uni-row>
-		<uni-row v-show="showDormitory">	
+		<uni-row v-if="showDormitory">	
 			<uni-col :span="12">
 				<uni-section title="维修管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
@@ -112,7 +112,7 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
-		<uni-row v-show="showDormitory">
+		<uni-row v-if="showDormitory">
 			<uni-col :span="12">
 				<uni-section title="宿舍管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
@@ -128,7 +128,7 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
-		<uni-row v-show="showStudent">
+		<uni-row v-if="showStudent">
 			<uni-col :span="12">
 				<uni-section title="维修管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
@@ -152,6 +152,10 @@
 	export default {
 		data() {
 			return {
+				showAdmin:false,
+				showMaintenance:false,
+				showDormitory:false,
+				showStudent:false,
 				showPersonManage: false,
 				showNoticeManage: false,
 				showToolManage: false,
@@ -212,11 +216,12 @@
 				  icon: 'none'
 				})
 			}
+			console.log(this?.user?.role.name)
 			if (this?.user?.role?.name === 'admin') {
 				this.showAdmin = true
-				this.showStudent = true
-				this.showMaintenance = true
-				this.showDormitory = true
+				this.showStudent = false
+				this.showMaintenance = false
+				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'student') {
 				this.showStudent = true
 				this.showAdmin = false
@@ -238,6 +243,10 @@
 				this.showMaintenance = false
 				this.showDormitory = false
 			}
+			console.log('this.showAdmin:'+this.showAdmin)
+			console.log('this.showStudent:'+this.showStudent)
+			console.log('this.showMaintenance:'+this.showMaintenance)
+			console.log('this.showDormitory:'+this.showDormitory)
 		},
 		methods: {
 			my() {
