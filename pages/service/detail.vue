@@ -68,6 +68,12 @@
 						style="width: 150px;"
 					  ></uni-data-select>
 				</uni-forms-item>
+				
+				<view>
+					<uni-text>
+						<span style="font-size: 14px; color: #606266;">报修人电话: 	{{item.selectedMaintainerPhone}}</span>
+					</uni-text>
+				</view>
 			</uni-forms>
 			<button class="anniu" v-show="!dispatchMaintainer && !dispatchDone" type="success" style="width: 80vw;font-size: 12px; background-color: #4ba5f6;" :disabled="disableEvaluate || !beforeFinished" @click="evaluationFinish">更新评价</button>
 			<button class="anniu" v-show="dispatchMaintainer" type="success" style="width: 80vw;font-size: 12px; background-color: #02bb18;" @click="dispatchMaintain">分配维修</button>
@@ -91,6 +97,7 @@
 					rate:'',
 					creator: {},
 					comment:'',
+					selectedMaintainerPhone:''
 				},
 				routes: [
 					// {
@@ -108,6 +115,7 @@
 				dispatchDone: false,
 				beforeFinished: true,
 				selectedMaintainerId: '',
+				selectedMaintainerPhone: '',
 				routes: [
 					{
 						to: "/pages/index/index",
@@ -135,6 +143,7 @@
 						}
 						console.log(res.data.serviceData)
 						this.item = res.data.serviceData
+						console.log(this.item)
 						if (loginInfo?.role?.name === "student" && loginInfo?.id === this.item.creator?.id) {
 							this.disableEvaluate = false
 						}
@@ -142,6 +151,11 @@
 							this.dispatchDone = true
 						}
 						this.selectedMaintainerId = res.data.serviceData?.maintainer?.id
+						this.selectedMaintainerPhone = res.data.serviceData?.maintainer?.phone
+						this.item.selectedMaintainerPhone = res.data.serviceData?.maintainer?.phone
+						console.log("this.selectedMaintainerId:" + this.selectedMaintainerId)
+						console.log("this.selectedMaintainerPhone:" + this.selectedMaintainerPhone)
+						console.log("this.selectedMaintainerPhone:" + this.selectedMaintainerPhone)
 						if (res.data.serviceData.status === 'DONE') {
 							this.beforeFinished = true
 						} else {

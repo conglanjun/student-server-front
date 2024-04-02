@@ -189,7 +189,7 @@
 					// #endif
 					// url: "api/notice/update",
 					data: {
-						text: this.selectedItem.text,
+						text: this.dialogText,
 						id: this.selectedItem.id,
 						createTime: this.selectedItem.createTime,
 						imageAddress: this.selectedItem.imageAddress

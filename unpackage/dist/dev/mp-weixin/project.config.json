@@ -18,8 +18,8 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.4",
-  "appid": "wx1302cebb8f9b5c9c",
+  "libVersion": "3.4.0",
+  "appid": "wxc2455692671efcd5",
   "projectname": "student-service",
   "condition": {},
   "editorSetting": {

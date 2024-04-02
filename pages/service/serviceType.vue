@@ -23,7 +23,7 @@
 						<uni-td>
 							<view class="uni-group">
 								<button class="uni-button" size="mini" style="font-size: 8px; margin-right: 10px;" type="primary" @click="updateServieType(item)">更新</button>
-								<button class="uni-button" size="mini" style="font-size: 8px" type="warn" @click="deleteServiceType">删除</button>
+								<button class="uni-button" size="mini" style="font-size: 8px" type="warn" @click="deleteServiceType(item)">删除</button>
 							</view>
 						</uni-td>
 					</uni-tr>
@@ -85,12 +85,14 @@
 			},			
 			updateDialogClose() {
 				this.$refs.updateDialog.close()
+				this.listServiceType()
 			},			
 			deleteDialogClose() {
 				this.$refs.deleteDialog.close()
 			},
 			inputDialogToggle(type, item) {
 				if (type === 'add') {
+					this.serviceType = {}
 					this.$refs.inputDialog.open()
 				}
 			},
@@ -102,10 +104,12 @@
 				this.serviceType = item
 				this.$refs.updateDialog.open()
 			},
-			deleteServiceType() {
-				console.log('删除的service type id:' + this.value)
+			deleteServiceType(item) {
+				console.log('删除的service type:' + item)
+				this.serviceType = item 
 				this.$refs.deleteDialog.open()
 			},
+			
 			listServiceType() {
 				uni.request({
 					// #ifdef H5
@@ -189,6 +193,7 @@
 						  title: '更新成功'
 						})
 						this.listServiceType()
+						this.serviceType = {}
 					}
 				})
 			},
@@ -210,6 +215,7 @@
 						  title: '删除成功'
 						})
 						this.listServiceType()
+						this.serviceType = {}
 					},
 				})
 			}

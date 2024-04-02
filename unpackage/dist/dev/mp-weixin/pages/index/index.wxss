@@ -41,4 +41,26 @@
 	width: 550rpx;
 	padding: 0 100rpx;
 }
+.popConfig {
+		z-index: 999;
+		background-color: white;
+		box-sizing: border-box;
+		padding: 25rpx;
+		width: 60vw;
+		min-height: 300rpx;
+		border-radius: 15rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+}
+.left-aligned-button { position: absolute; left: 0;
+}
+.uni-group {
+	display: flex;
+	align-items: center;
+}
+.demo-uni-row {
+	margin-bottom: 10px;
+}
 

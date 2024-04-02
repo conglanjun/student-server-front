@@ -8,7 +8,7 @@
 			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
 				:duration="duration">
 				<swiper-item v-for="(notice, index) in noticeList" :key="index">
-					<view class="swiper-item uni-bg-grey">
+					<view class="swiper-item uni-bg-grey" @click="showDetail(notice)">
 						<image :src="notice.imageAddress" style="max-width: 200px; max-height: 200px;margin: 10px;"></image>
 <!-- 						<text style="word-break:break-all;">
 							{{notice.text}}
@@ -95,6 +95,38 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
+		<uni-row v-if="showMaintenanceManage">
+			<uni-col :span="12">
+				<uni-section title="耗材管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="维修管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
+		<uni-row v-if="showMaintenanceManage">
+			<uni-col :span="12">
+				<uni-section title="留言管理" type="line">
+					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+			<uni-col :span="12">
+				<uni-section title="耗材记录" type="line">
+					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
+						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
+					</uni-card>
+				</uni-section>
+			</uni-col>
+		</uni-row>
 		</uni-row>
 		<uni-row v-if="showDormitory">	
 			<uni-col :span="12">
@@ -144,6 +176,25 @@
 				</uni-section>
 			</uni-col>
 		</uni-row>
+		<view class="content">
+			<uni-popup ref="inputDialog" type="dialog">
+				<view class="popConfig" >
+					<view>
+						<image style="max-width: 70px; max-height: 70px;" :src="noticeDetai.imageAddress" mode="aspectFit"></image>
+					</view>
+					<view>
+						<span style="font-size: 14px; color: #606266;">公告信息: 	{{noticeDetai.text}}</span>
+					</view>
+					<view>
+						<uni-row class="demo-uni-row">
+							<uni-col :span="24">
+								<button class="container uni-bg-blue1" @click="addDialogClose" style="background-color: #4ba5f6;font-size: 8px; color: white; margin: 10px 10px;">关闭</button>
+							</uni-col>
+						</uni-row>
+					</view>
+				</view>
+			</uni-popup>
+		</view>
 	</view>
 </template>
 
@@ -154,6 +205,7 @@
 			return {
 				showAdmin:false,
 				showMaintenance:false,
+				showMaintenanceManage:false,
 				showDormitory:false,
 				showStudent:false,
 				showPersonManage: false,
@@ -177,7 +229,8 @@
 						name:'',
 						displayName:''
 					}
-				}
+				},
+				noticeDetai:{}
 			}
 		},
 		onLoad() {
@@ -227,10 +280,17 @@
 				this.showAdmin = false
 				this.showMaintenance = false
 				this.showDormitory = false
-			} else if (this?.user?.role?.name === 'maintenance-manager' || this?.user?.role?.name === 'maintainer') {
+			} else if (this?.user?.role?.name === 'maintenance-manager') {
 				this.showStudent = false
 				this.showAdmin = false
 				this.showMaintenance = true
+				this.showMaintenanceManage = false
+				this.showDormitory = false
+			} else if (this?.user?.role?.name === 'maintainer') {
+				this.showStudent = false
+				this.showAdmin = false
+				this.showMaintenance = false
+				this.showMaintenanceManage = true
 				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'dormitory-manager') {
 				this.showStudent = false
@@ -288,6 +348,14 @@
 						url: "/pages/service/serviceType"
 					})
 				}
+			},			
+			addDialogClose() {
+				this.$refs.inputDialog.close()
+			},
+			showDetail(notice) {
+				console.log(notice)
+				this.noticeDetai= notice
+				this.$refs.inputDialog.open()
 			}
 		}
 	}
@@ -331,5 +399,30 @@
 	.uni-padding-wrap {
 		width: 550rpx;
 		padding: 0 100rpx;
+	}
+	@import '../../common/uni.css';
+	.popConfig {
+			z-index: 999;
+			background-color: white;
+			box-sizing: border-box;
+			padding: 25rpx;
+			width: 60vw;
+			min-height: 300rpx;
+			border-radius: 15rpx;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+	}
+	.left-aligned-button { position: absolute; left: 0; }
+	.uni-group {
+		display: flex;
+		align-items: center;
+	}	
+	.demo-uni-row {
+		margin-bottom: 10px;
+		/* #ifdef MP-TOUTIAO || MP-QQ || MP-BAIDU */
+		display: block;
+		/* #endif */
 	}
 </style>
