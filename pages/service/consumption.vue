@@ -9,7 +9,7 @@
 		</view>
 		<view class="content">
 			<view>
-				<button class="container left-aligned-button uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增耗材</button>
+				<button class="container left-aligned-button uni-bg-blue1" v-show="showManage" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增耗材</button>
 				<uni-title type="h4" title="耗材列表" style="font-size: 12px"></uni-title>
 			</view>
 			<view class="uni-container">

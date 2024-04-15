@@ -1,15 +1,9 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<view>
-				<button class="container left-aligned-button uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增宿舍</button>
+				<button class="container right-aligned-button uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增宿舍</button>
 				<uni-title type="h4" title="宿舍列表" style="font-size: 12px"></uni-title>
 			</view>
 			<view class="uni-container">
@@ -83,12 +77,6 @@
 				loading: false,
 				showManage: false,
 				msgType: 'success',
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
 			}
 		},		
 		onLoad() {
@@ -108,6 +96,7 @@
 			},
 			inputDialogToggle(type, item) {
 				if (type === 'add') {
+					this.formData = {}
 					this.$refs.addBuildingDialog.open()
 				} else if (type === 'consumption') {
 					this.selectedItem = item
@@ -159,6 +148,34 @@
 				}
 				uni.request({
 					// #ifdef H5
+					url: 'api/building/name/check',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/building/name/check',
+					// #endif
+					method: 'POST',
+					data: {
+					    name: this.formData.name
+					},
+					success: (res) => {
+						if (res.data.code === 200) {
+							if (res.data.buildingData.nameDuplicated) {
+								uni.showToast({
+									title: '名字已经存在，请更换名字',
+									icon: 'error'
+								})
+							} else {
+								this.buildingSave(id);
+							}
+						}
+					}
+				})
+				this.selectedItem = null
+				this.dialogText = ''
+			},
+			buildingSave(id) {
+				uni.request({
+					// #ifdef H5
 					url: 'api/building/save',
 					// #endif
 					// #ifdef MP-WEIXIN
@@ -180,9 +197,7 @@
 						this.selectedItem = {}
 						this.formData = {}
 					}
-				})
-				this.selectedItem = null
-				this.dialogText = ''
+				})	
 			},
 			deleteDialogConfirm() {
 				uni.request({
@@ -202,7 +217,14 @@
 						this.selectedItem = {}
 					}
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>
@@ -222,4 +244,5 @@
 		justify-content: space-between;
 		align-items: center;
 }
+.right-aligned-button { position: absolute; right: 0; }
 </style>

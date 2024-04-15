@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/service/room"],{
 
 /***/ 124:
-/*!************************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/main.js?{"page":"pages%2Fservice%2Froom"} ***!
-  \************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/main.js?{"page":"pages%2Fservice%2Froom"} ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_room.default);
 /***/ }),
 
 /***/ 125:
-/*!*****************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/pages/service/room.vue ***!
-  \*****************************************************************************/
+/*!*************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "pages/service/room.vue"
 /***/ }),
 
 /***/ 126:
-/*!************************************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=template&id=7d85f324& ***!
-  \************************************************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=template&id=7d85f324& ***!
+  \********************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 127:
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=template&id=7d85f324& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=template&id=7d85f324& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -110,16 +110,16 @@ try {
       return __webpack_require__.e(/*! import() | uni_modules/uni-title/components/uni-title/uni-title */ "uni_modules/uni-title/components/uni-title/uni-title").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-title/components/uni-title/uni-title.vue */ 178))
     },
     uniTable: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-table/uni-table */ "uni_modules/uni-table/components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-table/uni-table.vue */ 297))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-table/uni-table */ "uni_modules/uni-table/components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-table/uni-table.vue */ 304))
     },
     uniTr: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-tr/uni-tr */ "uni_modules/uni-table/components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-tr/uni-tr.vue */ 304))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-tr/uni-tr */ "uni_modules/uni-table/components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-tr/uni-tr.vue */ 311))
     },
     uniTh: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-th/uni-th */ "uni_modules/uni-table/components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-th/uni-th.vue */ 311))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-th/uni-th */ "uni_modules/uni-table/components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-th/uni-th.vue */ 318))
     },
     uniTd: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-td/uni-td */ "uni_modules/uni-table/components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-td/uni-td.vue */ 318))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-td/uni-td */ "uni_modules/uni-table/components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-td/uni-td.vue */ 325))
     },
     uniPopup: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 213))
@@ -140,7 +140,7 @@ try {
       return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 192))
     },
     uniPopupDialog: function () {
-      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 333))
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 340))
     },
   }
 } catch (e) {
@@ -174,9 +174,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 128:
-/*!******************************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -190,9 +190,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 129:
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -301,6 +301,7 @@ var _default = {
   methods: {
     inputDialogToggle: function inputDialogToggle(type, item) {
       if (type === 'add') {
+        this.formData = {};
         this.$refs.addDialog.open();
       } else if (type === 'consumption') {
         this.selectedItem = item;
@@ -337,8 +338,7 @@ var _default = {
       });
     },
     addDialogConfirm: function addDialogConfirm(id) {
-      var _this2 = this,
-        _uni$request;
+      var _this2 = this;
       console.log('id:' + id);
       if (typeof id === "undefined") {
         uni.showToast({
@@ -349,6 +349,32 @@ var _default = {
           title: '更新宿舍'
         });
       }
+      uni.request({
+        url: this.$api.defConfig.def().baseUrl + 'api/room/name/check',
+        method: 'POST',
+        data: {
+          name: this.formData.name,
+          buildingId: this.buildingId
+        },
+        success: function success(res) {
+          if (res.data.code === 200) {
+            if (res.data.roomData.nameDuplicated) {
+              uni.showToast({
+                title: '名字已经存在，请更换名字',
+                icon: 'error'
+              });
+            } else {
+              _this2.roomSave(id);
+            }
+          }
+        }
+      });
+      this.selectedItem = null;
+      this.dialogText = '';
+    },
+    roomSave: function roomSave(id) {
+      var _this3 = this,
+        _uni$request;
       uni.request((_uni$request = {
         url: this.$api.defConfig.def().baseUrl + 'api/room/save',
         method: 'POST',
@@ -362,16 +388,14 @@ var _default = {
         uni.hideLoading();
         console.log(res);
         // 关闭窗口后，恢复默认内容
-        _this2.$refs.addDialog.close();
-        _this2.loadRoomList();
-        _this2.selectedItem = {};
-        _this2.formData = {};
+        _this3.$refs.addDialog.close();
+        _this3.loadRoomList();
+        _this3.selectedItem = {};
+        _this3.formData = {};
       }), _uni$request));
-      this.selectedItem = null;
-      this.dialogText = '';
     },
     deleteDialogConfirm: function deleteDialogConfirm() {
-      var _this3 = this;
+      var _this4 = this;
       uni.request({
         url: this.$api.defConfig.def().baseUrl + 'api/room/delete/' + this.selectedItem.id,
         method: 'DELETE',
@@ -379,10 +403,10 @@ var _default = {
           uni.hideLoading();
           console.log(res);
           // 关闭窗口后，恢复默认内容
-          _this3.$refs.alertDialog.close();
-          _this3.loadRoomList();
-          _this3.selectedItem = {};
-          _this3.formData = {};
+          _this4.$refs.alertDialog.close();
+          _this4.loadRoomList();
+          _this4.selectedItem = {};
+          _this4.formData = {};
         }
       });
     }
@@ -394,9 +418,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 130:
-/*!**************************************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************/
+/*!**********************************************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -410,9 +434,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 131:
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/service/room.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/service/room.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

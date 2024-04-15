@@ -100,6 +100,7 @@
 		methods: {
 			inputDialogToggle(type, item) {
 				if (type === 'add') {
+					this.formData = {}
 					this.$refs.addDialog.open()
 				} else if (type === 'consumption') {
 					this.selectedItem = item
@@ -152,6 +153,35 @@
 				}
 				uni.request({
 					// #ifdef H5
+					url: 'api/room/name/check',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/room/name/check',
+					// #endif
+					method: 'POST',
+					data: {
+					    name: this.formData.name,
+						buildingId: this.buildingId
+					},
+					success: (res) => {
+						if (res.data.code === 200) {
+							if (res.data.roomData.nameDuplicated) {
+								uni.showToast({
+									title: '名字已经存在，请更换名字',
+									icon: 'error'
+								})
+							} else {
+								this.roomSave(id)
+							}
+						}
+					}
+				})
+				this.selectedItem = null
+				this.dialogText = ''
+			},
+			roomSave(id) {
+				uni.request({
+					// #ifdef H5
 					url: 'api/room/save',
 					// #endif
 					// #ifdef MP-WEIXIN
@@ -175,8 +205,6 @@
 						this.formData = {}
 					}
 				})
-				this.selectedItem = null
-				this.dialogText = ''
 			},
 			deleteDialogConfirm() {
 				uni.request({

@@ -7,14 +7,17 @@
 .left-aligned-button { position: absolute; left: 0;
 }
 .uni-margin-wrap {
-	width: 690rpx;
+	/* width: 690rpx; */
 	width: 100%;
+	height: 100%;
 }
 .content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	height: 100%;
 }
 .swiper {
 	height: 300rpx;
