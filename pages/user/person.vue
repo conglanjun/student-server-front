@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<view class="container">
+			<uni-breadcrumb separator="/">
+				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
+					{{route.name}}
+				</uni-breadcrumb-item>
+			</uni-breadcrumb>
+		</view>
 		<view class="uni-container">
 			<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
 				<uni-tr>
@@ -114,7 +121,13 @@
 				messageText: '成功提示',
 				formData:{},
 				buildingId: '',
-				roomId: ''
+				roomId: '',
+				routes: [
+					{
+						to: "/pages/index/index",
+						name: "首页",
+					},
+				]
 			}
 		},
 		onLoad() {
