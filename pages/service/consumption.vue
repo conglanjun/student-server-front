@@ -1,15 +1,9 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<view>
-				<button class="container left-aligned-button uni-bg-blue1" v-show="showManage" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增耗材</button>
+				<button class="container right-aligned-button uni-bg-blue1" v-show="showManage" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增耗材</button>
 				<uni-title type="h4" title="耗材列表" style="font-size: 12px"></uni-title>
 			</view>
 			<view class="uni-container">
@@ -88,12 +82,6 @@
 				loading: false,
 				showManage: false,
 				msgType: 'success',
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				],
 				loginInfo: {}
 			}
 		},
@@ -265,7 +253,14 @@
 						this.selectedItem = {}
 					}
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>
@@ -285,4 +280,7 @@
 		justify-content: space-between;
 		align-items: center;
 }
+
+.right-aligned-button { position: absolute; right: 0; }
+.left-aligned-button { position: absolute; left: 0; }
 </style>

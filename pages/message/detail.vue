@@ -1,30 +1,18 @@
 <template>
 	<view>
-		<view class="page_pingjia1">
-			<uni-forms :modelValue="item">
-				<uni-forms-item label="留言标题" name="title" class="form">
-					<uni-easyinput type="text" v-model="item.title" :disabled="!canDone"/>
-				</uni-forms-item>
-				<uni-forms-item label="留言详情" name="message">
-					<uni-easyinput type="textarea" v-model="item.message" :disabled="!canDone"/>
-				</uni-forms-item>				
-				<view style="margin-bottom:22px;">
-					<uni-text>
-						<span style="font-size: 14px; color: #606266;">创建时间: 	{{item.displayCreateTime}}</span>
-					</uni-text>
-				</view>
-			</uni-forms>
-			
-			<view>
-				<uni-row class="demo-uni-row">
-					<uni-col :span="12">
-						<button class="anniu" :disabled="!canDone" type="success" style=" margin: 10px 10px;font-size: 10px; background-color: #4ba5f6; color: aliceblue;" @click="update">修改</button>
-					</uni-col>
-					<uni-col :span="12">
-						<button class="anniu" :disabled="!canDelete" type="success" style="margin: 10px 10px;font-size: 10px; background-color: #990033; color: aliceblue;" @click="deleteItem">删除</button>
-					</uni-col>
-				</uni-row>
-			</view>
+		<view style="margin-bottom:22px;">
+			<uni-text>
+				<span style="font-size: 14px; color: #606266;">留言标题: 	{{item.title}}</span>
+			</uni-text>
+		</view>
+		<view style="margin-bottom:22px;">
+			<uni-text>
+				<span style="font-size: 14px; color: #606266;">留言内容: 	{{item.message}}</span>
+			</uni-text>
+		</view>
+		<view class="comment">
+		   <hb-comment ref="hbComment" @add="sendComment" @del="delcomment" @like="like" @focusOn="focusOn" :deleteTip="'确认删除？'"
+			   :cmData="commentData" v-if="commentData"></hb-comment>
 		</view>
 	</view>
 </template>
@@ -41,6 +29,8 @@
 				},
 				canDone: false,
 				canDelete: false,
+				commentData: '',
+				res:'',
 			}
 		},
 		onLoad(param){
@@ -65,6 +55,74 @@
 					}
 				},
 			})
+			
+			
+			// demo
+			this.res = {
+				"readNumer": 193,
+				"commentList": [{
+						"id": 1, // 唯一主键
+						"owner": false, // 是否是拥有者，为true则可以删除，管理员全部为true
+						"hasLike": false, // 是否点赞
+						"likeNum": 2, // 点赞数量
+						// "avatarUrl": "https://inews.gtimg.com/newsapp_ls/0/13797755537/0", // 评论者头像地址
+						"nickName": "超长昵称超长...", // 评论者昵称，昵称过长请在后端截断
+						"content": "啦啦啦啦", // 评论内容
+						"parentId": null, // 所属评论的唯一主键
+						"createTime": "2021-07-02 16:32:07" // 创建时间
+					},
+					{
+						"id": 2,
+						"owner": false,
+						"hasLike": false,
+						"likeNum": 2,
+						"avatarUrl": "https://inews.gtimg.com/newsapp_ls/0/13797761970/0",
+						"nickName": "寂寞无敌",
+						"content": "我是评论的评论",
+						"parentId": 1,
+						"createTime": "2021-07-02 17:05:50"
+					},
+					{
+						"id": 4,
+						"owner": true,
+						"hasLike": true,
+						"likeNum": 1,
+						"avatarUrl": "https://inews.gtimg.com/newsapp_ls/0/13797763270/0",
+						"nickName": "name111",
+						"content": "评论啦啦啦啦啦啦啦啦啦啦",
+						"parentId": null,
+						"createTime": "2021-07-13 09:37:50"
+					},
+					{
+						"id": 5,
+						"owner": false,
+						"hasLike": false,
+						"likeNum": 0,
+						"avatarUrl": "https://inews.gtimg.com/newsapp_ls/0/13797755537/0",
+						"nickName": "超长昵称超长...",
+						"content": "超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论超长评论",
+						"parentId": null,
+						"createTime": "2021-07-13 16:04:35"
+					},
+					{
+						"id": 13,
+						"owner": false,
+						"hasLike": false,
+						"likeNum": 0,
+						"avatarUrl": "https://inews.gtimg.com/newsapp_ls/0/13797755537/0",
+						"nickName": "超长昵称超长...",
+						"content": "@寂寞无敌 你怕不是个大聪明",
+						"parentId": 1,
+						"createTime": "2021-07-14 11:01:23"
+					}
+				]
+			}
+			this.commentData = {
+			    "readNumer": this.res.readNumer,
+			    "commentSize": this.res.commentList.length,
+			    "comment": this.getTree(this.res.commentList)
+			}
+			
 		},	
 		methods: {
 			update() {
@@ -111,7 +169,75 @@
 						})
 					},
 				})
-			}
+			},
+			getTree(data) {
+			    let result = [];
+			    let map = {};
+			    data.forEach(item => {
+			        map[item.id] = item;
+			    });
+			    data.forEach(item => {
+			        let parent = map[item.parentId];
+			        if (parent) {
+			            (parent.children || (parent.children = [])).push(item);
+			        } else {
+			            result.push(item);
+			        }
+			    });
+			    return result;
+			},
+			bindTextAreaBlur: function (e) {
+				console.log(e.detail.value)
+			},
+			focusOn(){
+				// this.$refs.hbComment.focusOn();
+			},
+			sendComment(data){
+				console.log(data)
+				var type=0
+				if(data.pId){
+					type = 1;
+				}
+				var form = {"content":data.content,"blogId":this.item.id,"type":type,"parentId":data.pId};
+				// addCommentBlog(form).then(response=>{
+				// 	this.$refs.hbComment.closeInput();
+				// 	this.getCommentList();
+				// })
+				uni.request({
+					// #ifdef H5
+					url: 'api/comment/save',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/comment/save',
+					// #endif
+					method: 'POST',
+					data: {
+					  title: this.formData.title,
+					  message: this.formData.message,
+					  userId: this.creatorId,
+					},
+					success: (res) => {
+						this.$refs.hbComment.closeInput();
+						this.getCommentList();
+					},
+				})
+			},
+			delcomment(data){
+				delcomment(data).then(response=>{
+					this.getCommentList();
+				})
+			},
+			getCommentList(){
+				// listCommentBlogMinApp({"blogId":this.item.id}).then(res=>{
+				// 	// res.readNumer = 193;
+				// 	res.commentList=res.data.rows;
+				// 	this.commentData = {
+				// 		"readNumer": res.readNumer,
+				// 		"commentSize": res.commentList.length,
+				// 		"comment": this.getTree(res.commentList)
+				// 	}
+				// })
+			},
 		}
 	}
 </script>

@@ -1370,6 +1370,8 @@ radio-group label, checkbox-group label{
 }
 .left-aligned-button { position: absolute; left: 0;
 }
+.right-aligned-button { position: absolute; right: 0;
+}
 .uni-group {
 	display: flex;
 	align-items: center;

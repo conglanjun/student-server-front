@@ -17,7 +17,7 @@
 		data() {
 			return {
 				items:[],
-				creatorId: ''
+				creatorId: '',
 			}
 		},
 		onLoad() {
@@ -61,7 +61,7 @@
 						
 					}
 				})
-			}
+			},
 		}
 	}
 </script>

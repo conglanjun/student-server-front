@@ -1,12 +1,6 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<uni-forms :modelValue="formData">
 				<uni-forms-item label="姓名" name="name">
@@ -55,20 +49,6 @@
 					password: '',
 					repassword: ''
 				},
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					}
-					// {
-					// 	to: "",
-					// 	name: "菜单 A",
-					// },
-					// {
-					// 	to: "",
-					// 	name: "菜单 B",
-					// },
-				],
 				building: {
 					id: '',
 					name: ''
@@ -79,10 +59,31 @@
 				roomList:[],
 				buildingId: '',
 				roomId: '',
+				roleId: '',
 			}
 		},
 		onLoad() {
 			this.loadBuildingList()
+			// list role
+			uni.request({
+				// #ifdef H5
+				url: 'api/roleList',
+				// #endif
+				// #ifdef MP-WEIXIN
+				url: this.$api.defConfig.def().baseUrl + 'api/roleList',
+				// #endif
+				method: 'GET',
+				success: (res) => {
+					if (res.data.code === 200) {
+						if (res.data.roleList) {
+							for (let i = 0; i < res.data.roleList.length; i++) {
+								if (res.data.roleList[i].name === 'student')
+								this.roleId = res.data.roleList[i].id
+							}
+						}
+					}
+				}
+			})
 		},
 		methods: {
 			loadBuildingList() {
@@ -171,7 +172,8 @@
 						phone: this.formData.phone,
 						password: this.formData.password,
 						buildingId: this.building.id,
-						roomId: this.roomId
+						roomId: this.roomId,
+						roleId: this.roleId
 					},
 					success: (res) => {
 					  if (res.data.code === 200) {
@@ -201,7 +203,14 @@
 					  })
 					}
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>

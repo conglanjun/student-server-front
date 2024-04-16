@@ -1,12 +1,6 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<view>
 				<uni-title type="h4" title="耗材记录列表" style="font-size: 12px"></uni-title>
@@ -41,13 +35,7 @@
 		data() {
 			return {
 				loading: false,
-				tableData: [],
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
+				tableData: []
 			}
 		},
 		onLoad() {
@@ -70,7 +58,14 @@
 						}
 					}
 				})
-			}		
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},	
 		}
 	}
 </script>

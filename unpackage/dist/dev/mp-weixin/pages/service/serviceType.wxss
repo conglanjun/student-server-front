@@ -51,4 +51,12 @@
   padding: 5rpx 10rpx 0;
   overflow: hidden;
 }
+.right-aligned-button {
+  position: absolute;
+  right: 0;
+}
+.left-aligned-button {
+  position: absolute;
+  left: 0;
+}
 

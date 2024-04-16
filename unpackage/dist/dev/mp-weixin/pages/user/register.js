@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/user/register"],{
 
 /***/ 44:
-/*!*********************************************************************************************************!*\
-  !*** /Users/conglanjun/HBuilderProject/student-server-front/main.js?{"page":"pages%2Fuser%2Fregister"} ***!
-  \*********************************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/conglanjun/project/student-server-front/main.js?{"page":"pages%2Fuser%2Fregister"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_register.default);
 /***/ }),
 
 /***/ 45:
-/*!**************************************************************************************!*\
-  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue ***!
-  \**************************************************************************************/
+/*!******************************************************************************!*\
+  !*** /Users/conglanjun/project/student-server-front/pages/user/register.vue ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "pages/user/register.vue"
 /***/ }),
 
 /***/ 46:
-/*!*********************************************************************************************************************!*\
-  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=template&id=f11a6d84& ***!
-  \*********************************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=template&id=f11a6d84& ***!
+  \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 47:
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=template&id=f11a6d84& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=template&id=f11a6d84& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -100,11 +100,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniBreadcrumb: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb.vue */ 220))
-    },
-    uniBreadcrumbItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item.vue */ 227))
+    uniNavBar: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
     },
     uniForms: function () {
       return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 234))
@@ -150,9 +147,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 48:
-/*!***************************************************************************************************************!*\
-  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -166,9 +163,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 49:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -220,12 +217,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -235,20 +226,6 @@ var _default = {
         password: '',
         repassword: ''
       },
-      routes: [{
-        to: "/pages/index/index",
-        name: "首页"
-      }
-      // {
-      // 	to: "",
-      // 	name: "菜单 A",
-      // },
-      // {
-      // 	to: "",
-      // 	name: "菜单 B",
-      // },
-      ],
-
       building: {
         id: '',
         name: ''
@@ -258,15 +235,31 @@ var _default = {
       buildingList: [],
       roomList: [],
       buildingId: '',
-      roomId: ''
+      roomId: '',
+      roleId: ''
     };
   },
   onLoad: function onLoad() {
+    var _this = this;
     this.loadBuildingList();
+    // list role
+    uni.request({
+      url: this.$api.defConfig.def().baseUrl + 'api/roleList',
+      method: 'GET',
+      success: function success(res) {
+        if (res.data.code === 200) {
+          if (res.data.roleList) {
+            for (var i = 0; i < res.data.roleList.length; i++) {
+              if (res.data.roleList[i].name === 'student') _this.roleId = res.data.roleList[i].id;
+            }
+          }
+        }
+      }
+    });
   },
   methods: {
     loadBuildingList: function loadBuildingList() {
-      var _this = this;
+      var _this2 = this;
       uni.request({
         url: this.$api.defConfig.def().baseUrl + 'api/buildingList',
         method: 'GET',
@@ -278,7 +271,7 @@ var _default = {
                 res.data.buildingDataList[i].value = res.data.buildingDataList[i].id;
               }
             }
-            _this.buildingList = res.data.buildingDataList;
+            _this2.buildingList = res.data.buildingDataList;
           }
         }
       });
@@ -294,7 +287,7 @@ var _default = {
       this.roomId = e;
     },
     loadRoomList: function loadRoomList() {
-      var _this2 = this;
+      var _this3 = this;
       if (this.buildingId === 'undefined' || this.buildingId === null || this.buildingId === 'null') {
         return;
       }
@@ -309,8 +302,8 @@ var _default = {
                 res.data.roomDataList[i].value = res.data.roomDataList[i].id;
               }
             }
-            _this2.roomList = res.data.roomDataList;
-            console.log(_this2.roomList);
+            _this3.roomList = res.data.roomDataList;
+            console.log(_this3.roomList);
           }
         }
       });
@@ -338,7 +331,8 @@ var _default = {
           phone: this.formData.phone,
           password: this.formData.password,
           buildingId: this.building.id,
-          roomId: this.roomId
+          roomId: this.roomId,
+          roleId: this.roleId
         },
         success: function success(res) {
           if (res.data.code === 200) {
@@ -368,6 +362,12 @@ var _default = {
           });
         }
       });
+    },
+    clickLeft: function clickLeft() {},
+    back: function back() {
+      uni.switchTab({
+        url: "/pages/index/index"
+      });
     }
   }
 };
@@ -377,9 +377,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 50:
-/*!***********************************************************************************************************************!*\
-  !*** /Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -393,9 +393,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 51:
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/pages/user/register.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/pages/user/register.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

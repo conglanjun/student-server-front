@@ -1360,4 +1360,8 @@ radio-group label, checkbox-group label{
 		justify-content: space-between;
 		align-items: center;
 }
+.right-aligned-button { position: absolute; right: 0;
+}
+.left-aligned-button { position: absolute; left: 0;
+}
 

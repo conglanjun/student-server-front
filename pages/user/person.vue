@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="container">
 			<uni-breadcrumb separator="/">
 				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
@@ -122,12 +123,6 @@
 				formData:{},
 				buildingId: '',
 				roomId: '',
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
 			}
 		},
 		onLoad() {
@@ -284,7 +279,14 @@
 				},
 				this.dialogText = ''
 				this.value = 0
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>

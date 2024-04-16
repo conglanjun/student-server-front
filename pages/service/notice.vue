@@ -1,25 +1,29 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<view>
-				<button class="container left-aligned-button uni-bg-blue1" @click="inputDialogToggle" style="background-color: #b88e22;font-size: 12px; color: white;">新增公告</button>
+				<button class="container right-aligned-button uni-bg-blue1" @click="inputDialogToggle" style="background-color: #b88e22;font-size: 12px; color: white;">新增公告</button>
 				<uni-title type="h4" title="信息列表" style="font-size: 12px"></uni-title>
 			</view>
 			<view class="uni-container">
 				<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
+					<!-- #ifdef H5 -->
 					<uni-tr>
-						<uni-th width="100" align="center">创建时间</uni-th>
-						<uni-th width="150" align="center">公告内容</uni-th>
-						<uni-th width="100" align="center">图片内容</uni-th>
+						<uni-th align="center">创建时间</uni-th>
+						<uni-th align="center">公告内容</uni-th>
+						<uni-th align="center">图片内容</uni-th>
+						<uni-th align="center">设置</uni-th>
+					</uni-tr>
+					<!-- #endif -->
+					<!-- #ifdef MP-WEIXIN -->
+					<uni-tr>
+						<uni-th width="80" align="center">创建时间</uni-th>
+						<uni-th width="80" align="center">公告内容</uni-th>
+						<uni-th width="80" align="center">图片内容</uni-th>
 						<uni-th width="80" align="center">设置</uni-th>
 					</uni-tr>
+					<!-- #endif -->
 					<uni-tr v-for="(item, index) in tableData" :key="index">
 						<uni-td>{{ item.displayCreateTime }}</uni-td>
 						<uni-td>
@@ -94,12 +98,6 @@
 				type: 'center',
 				messageText: '成功提示',
 				imageAddress: '',
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
 			}
 		},
 		onLoad() {
@@ -226,7 +224,14 @@
 						
 					}
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>
@@ -254,6 +259,7 @@
 }
 .container { position: relative; } 
 .left-aligned-button { position: absolute; left: 0; }
+.right-aligned-button { position: absolute; right: 0; }
 .uni-group {
 	display: flex;
 	align-items: center;

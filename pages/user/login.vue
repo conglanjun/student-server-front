@@ -1,31 +1,34 @@
 <template>
-	<view class="content form">
-		<uni-forms :modelValue="formData">
-			<uni-forms-item label="手机号" name="phone" class="form">
-				<uni-easyinput type="text" v-model="formData.phone" placeholder="请输入手机号登录" />
-			</uni-forms-item>
-			<uni-forms-item label="密码" name="password">
-				<uni-easyinput type="password" v-model="formData.password" placeholder="请输入密码" />
-			</uni-forms-item>
-			<button @click="login">登录</button>
-		</uni-forms>
-		<view>
-			<uni-row class="demo-uni-row">
-				<uni-col :span="12">
-					<navigator url="/pages/user/changeSecret">
-						<uni-text style="margin: 10px;">
-							<span style="font-size: 14px;">忘记密码</span>
-						</uni-text>
-					</navigator>
-				</uni-col>
-				<uni-col :span="12">
-					<navigator url="/pages/user/register">
-						<uni-text style="margin: 10px;">
-							<span style="font-size: 14px;">注册账号</span>
-						</uni-text>
-					</navigator>
-				</uni-col>
-			</uni-row>
+	<view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
+		<view class="content form">
+			<uni-forms :modelValue="formData">
+				<uni-forms-item label="手机号" name="phone" class="form">
+					<uni-easyinput type="text" v-model="formData.phone" placeholder="请输入手机号登录" />
+				</uni-forms-item>
+				<uni-forms-item label="密码" name="password">
+					<uni-easyinput type="password" v-model="formData.password" placeholder="请输入密码" />
+				</uni-forms-item>
+				<button @click="login">登录</button>
+			</uni-forms>
+			<view>
+				<uni-row class="demo-uni-row">
+					<uni-col :span="12">
+						<navigator url="/pages/user/changeSecret">
+							<uni-text style="margin: 10px;">
+								<span style="font-size: 14px;">忘记密码</span>
+							</uni-text>
+						</navigator>
+					</uni-col>
+					<uni-col :span="12">
+						<navigator url="/pages/user/register">
+							<uni-text style="margin: 10px;">
+								<span style="font-size: 14px;">注册账号</span>
+							</uni-text>
+						</navigator>
+					</uni-col>
+				</uni-row>
+			</view>
 		</view>
 	</view>
 </template>
@@ -115,7 +118,14 @@
 				  })
 				}
 			  })
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>
