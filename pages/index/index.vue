@@ -159,23 +159,21 @@
 			</uni-col>
 		</uni-row>
 		<uni-row v-if="showMaintenanceManage">
-			<uni-col :span="12">
+			<uni-col :span="8">
 				<uni-section title="耗材管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
 						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
 					</uni-card>
 				</uni-section>
 			</uni-col>
-			<!-- <uni-col :span="12">
-				<uni-section title="维修管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col> -->
-			<uni-col :span="12">
+			<uni-col :span="8">
 				<view @click="onClick('service')" class="center">
 					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/statistics.png"></image>
+				</view>
+			</uni-col>
+			<uni-col :span="8">
+				<view @click="onClick('dispatch')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/dispatch.png"></image>
 				</view>
 			</uni-col>
 		</uni-row>
@@ -401,6 +399,10 @@
 				} else if (type === 'service') {
 					uni.reLaunch({
 						url: "/pages/service/service?creatorId=" + get('loginInfo').id
+					})
+				} else if (type === 'dispatch') {
+					uni.reLaunch({
+						url: "/pages/service/dispatch"
 					})
 				} else if (type === 'consumption') {
 					uni.reLaunch({

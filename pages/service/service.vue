@@ -123,7 +123,6 @@
 				},
 			]
 			// this.loadServiceList(param)
-			var requestUrl = 'api/serviceList'
 			let userInfo = get('loginInfo')
 			var requestUrl = 'api/serviceList'
 			if (userInfo?.role?.name === "student") {
@@ -207,7 +206,7 @@
 				})
 			},
 			onClick(id) {
-				uni.navigateTo({
+				uni.redirectTo({
 				  url: '/pages/service/detail?id=' + id
 				})
 			},
