@@ -1,12 +1,6 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<uni-forms :modelValue="formData">
 			<uni-forms-item label="维修单标题" name="title" class="form">
 				<uni-easyinput type="text" v-model="formData.title" placeholder="请输入订单标题" />
@@ -108,12 +102,6 @@
 				messageText: '成功提示',
 				buildingList:[],
 				roomList:[],
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
 			}
 		},
 		onLoad(param) {
@@ -358,7 +346,14 @@
 						this.listServiceType()
 					}
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>

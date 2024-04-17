@@ -437,6 +437,17 @@ var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -526,14 +537,14 @@ var _default = {
     } else if ((this === null || this === void 0 ? void 0 : (_this$user4 = this.user) === null || _this$user4 === void 0 ? void 0 : (_this$user4$role = _this$user4.role) === null || _this$user4$role === void 0 ? void 0 : _this$user4$role.name) === 'maintenance-manager') {
       this.showStudent = false;
       this.showAdmin = false;
-      this.showMaintenance = true;
-      this.showMaintenanceManage = false;
+      this.showMaintenance = false;
+      this.showMaintenanceManage = true;
       this.showDormitory = false;
     } else if ((this === null || this === void 0 ? void 0 : (_this$user5 = this.user) === null || _this$user5 === void 0 ? void 0 : (_this$user5$role = _this$user5.role) === null || _this$user5$role === void 0 ? void 0 : _this$user5$role.name) === 'maintainer') {
       this.showStudent = false;
       this.showAdmin = false;
-      this.showMaintenance = false;
-      this.showMaintenanceManage = true;
+      this.showMaintenance = true;
+      this.showMaintenanceManage = false;
       this.showDormitory = false;
     } else if ((this === null || this === void 0 ? void 0 : (_this$user6 = this.user) === null || _this$user6 === void 0 ? void 0 : (_this$user6$role = _this$user6.role) === null || _this$user6$role === void 0 ? void 0 : _this$user6$role.name) === 'dormitory-manager') {
       this.showStudent = false;
@@ -567,6 +578,10 @@ var _default = {
           url: "/pages/user/person"
         });
       } else if (type === 'tool') {
+        uni.reLaunch({
+          url: "/pages/service/addService?creatorId=" + (0, _storage.get)('loginInfo').id
+        });
+      } else if (type === 'service') {
         uni.reLaunch({
           url: "/pages/service/service?creatorId=" + (0, _storage.get)('loginInfo').id
         });

@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view style="margin-bottom:22px;">
 			<uni-text>
 				<span style="font-size: 14px; color: #606266;">留言标题: 	{{item.title}}</span>
@@ -117,11 +118,12 @@
 					}
 				]
 			}
-			this.commentData = {
-			    "readNumer": this.res.readNumer,
-			    "commentSize": this.res.commentList.length,
-			    "comment": this.getTree(this.res.commentList)
-			}
+			// this.commentData = {
+			//     "readNumer": this.res.readNumer,
+			//     "commentSize": this.res.commentList.length,
+			//     "comment": this.getTree(this.res.commentList)
+			// }
+			this.getCommentList()
 			
 		},	
 		methods: {
@@ -194,15 +196,6 @@
 			},
 			sendComment(data){
 				console.log(data)
-				var type=0
-				if(data.pId){
-					type = 1;
-				}
-				var form = {"content":data.content,"blogId":this.item.id,"type":type,"parentId":data.pId};
-				// addCommentBlog(form).then(response=>{
-				// 	this.$refs.hbComment.closeInput();
-				// 	this.getCommentList();
-				// })
 				uni.request({
 					// #ifdef H5
 					url: 'api/comment/save',
@@ -212,9 +205,12 @@
 					// #endif
 					method: 'POST',
 					data: {
-					  title: this.formData.title,
-					  message: this.formData.message,
-					  userId: this.creatorId,
+					  articleId: this.item.id,
+					  commentUserId: this.loginInfo.id,
+					  parentId: data.pId,
+					  content: data.content,
+					  like: '[]',
+					  status: 1
 					},
 					success: (res) => {
 						this.$refs.hbComment.closeInput();
@@ -223,20 +219,69 @@
 				})
 			},
 			delcomment(data){
-				delcomment(data).then(response=>{
-					this.getCommentList();
+				uni.request({
+					// #ifdef H5
+					url: 'api/comment/delete/' + data,
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/comment/delete/' + data,
+					// #endif
+					method: 'DELETE',
+					success: (res) => {
+						if (res.data.code === 200) {
+							this.getCommentList();
+						}
+					},
 				})
 			},
 			getCommentList(){
-				// listCommentBlogMinApp({"blogId":this.item.id}).then(res=>{
-				// 	// res.readNumer = 193;
-				// 	res.commentList=res.data.rows;
-				// 	this.commentData = {
-				// 		"readNumer": res.readNumer,
-				// 		"commentSize": res.commentList.length,
-				// 		"comment": this.getTree(res.commentList)
-				// 	}
-				// })
+				uni.request({
+					// #ifdef H5
+					url: 'api/comment/list?messageId=' + this.item.id + '&userId=' + this.loginInfo.id,
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/comment/list?messageId=' + this.item.id + '&userId=' + this.loginInfo.id,
+					// #endif
+					method: 'GET',
+					success: (res) => {
+						if (res.data.code === 200) {
+							console.log(res.data)
+							for(let i = 0; i < res.data.commentDataList?.length; i++) {
+								res.data.commentDataList[i].createTime = res.data.commentDataList[i].displayCreateTime
+								res.data.commentDataList[i].updateTime = res.data.commentDataList[i].displayUpdateTime
+							}
+							this.commentData = {
+								"readNumer": res.data.readNumer,
+								"commentSize": res.data.commentDataList?.length,
+								"comment": this.getTree(res.data.commentDataList)
+							}
+						}
+					},
+				})
+			},
+			like(data) {
+				console.log(data)
+				uni.request({
+					// #ifdef H5
+					url: 'api/comment/like?commentId=' + data + '&userId=' + this.loginInfo.id,
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/comment/like?commentId=' + data + '&userId=' + this.loginInfo.id,
+					// #endif
+					method: 'GET',
+					success: (res) => {
+						if (res.data.code === 200) {
+							this.getCommentList()
+						}
+					},
+				})
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
 			},
 		}
 	}

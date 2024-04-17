@@ -100,20 +100,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniBreadcrumb: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb.vue */ 220))
-    },
-    uniBreadcrumbItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item.vue */ 227))
+    uniNavBar: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
     },
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 234))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 220))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 250))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 236))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 257))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 243))
     },
     uniRow: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 178))
@@ -122,7 +119,7 @@ try {
       return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 185))
     },
     uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 264))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 250))
     },
     uniPopup: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 206))
@@ -265,12 +262,6 @@ var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -299,11 +290,7 @@ var _default = {
       type: 'center',
       messageText: '成功提示',
       buildingList: [],
-      roomList: [],
-      routes: [{
-        to: "/pages/index/index",
-        name: "首页"
-      }]
+      roomList: []
     };
   },
   onLoad: function onLoad(param) {
@@ -514,6 +501,12 @@ var _default = {
           });
           _this6.listServiceType();
         }
+      });
+    },
+    clickLeft: function clickLeft() {},
+    back: function back() {
+      uni.switchTab({
+        url: "/pages/index/index"
       });
     }
   }

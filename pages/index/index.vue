@@ -141,11 +141,14 @@
 		</uni-row>
 		<uni-row v-if="showMaintenance">
 			<uni-col :span="12">
-				<uni-section title="留言管理" type="line">
+				<!-- <uni-section title="留言管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
 						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
 					</uni-card>
-				</uni-section>
+				</uni-section> -->
+				<view @click="onClick('message')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/message2.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
 				<uni-section title="耗材记录" type="line">
@@ -163,12 +166,17 @@
 					</uni-card>
 				</uni-section>
 			</uni-col>
-			<uni-col :span="12">
+			<!-- <uni-col :span="12">
 				<uni-section title="维修管理" type="line">
 					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
 						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
 					</uni-card>
 				</uni-section>
+			</uni-col> -->
+			<uni-col :span="12">
+				<view @click="onClick('service')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/statistics.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<uni-row v-if="showMaintenanceManage">
@@ -222,18 +230,21 @@
 		</uni-row>
 		<uni-row v-if="showStudent">
 			<uni-col :span="12">
-				<uni-section title="维修管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('tool')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/tool.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
-				<uni-section title="留言管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('message')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/message2.png"></image>
+				</view>
+			</uni-col>
+		</uni-row>
+		<uni-row v-if="showStudent">
+			<uni-col :span="12">
+				<view @click="onClick('service')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/statistics.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<view class="content">
@@ -343,14 +354,14 @@
 			} else if (this?.user?.role?.name === 'maintenance-manager') {
 				this.showStudent = false
 				this.showAdmin = false
-				this.showMaintenance = true
-				this.showMaintenanceManage = false
+				this.showMaintenance = false
+				this.showMaintenanceManage = true
 				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'maintainer') {
 				this.showStudent = false
 				this.showAdmin = false
-				this.showMaintenance = false
-				this.showMaintenanceManage = true
+				this.showMaintenance = true
+				this.showMaintenanceManage = false
 				this.showDormitory = false
 			} else if (this?.user?.role?.name === 'dormitory-manager') {
 				this.showStudent = false
@@ -384,6 +395,10 @@
 						url: "/pages/user/person"
 					})
 				} else if (type === 'tool') {
+					uni.reLaunch({
+						url: "/pages/service/addService?creatorId=" + get('loginInfo').id
+					})
+				} else if (type === 'service') {
 					uni.reLaunch({
 						url: "/pages/service/service?creatorId=" + get('loginInfo').id
 					})

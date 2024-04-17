@@ -1,12 +1,6 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="page_pingjia1">
 			<uni-forms :modelValue="item">
 				<uni-forms-item label="维修单标题" name="title" class="form">
@@ -99,16 +93,6 @@
 					comment:'',
 					selectedMaintainerPhone:''
 				},
-				routes: [
-					// {
-					// 	to: "/pages/index/index",
-					// 	name: "首页",
-					// },
-					// {
-					// 	to: "/pages/service/service",
-					// 	name: "维修订单列表",
-					// }
-				],
 				disableEvaluate: true,
 				maintainerList: [],
 				dispatchMaintainer: false,
@@ -116,12 +100,6 @@
 				beforeFinished: true,
 				selectedMaintainerId: '',
 				selectedMaintainerPhone: '',
-				routes: [
-					{
-						to: "/pages/index/index",
-						name: "首页",
-					},
-				]
 			}
 		},
 		onLoad(param){
@@ -302,7 +280,14 @@
 						})
 					},
 				})
-			}
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
+				})
+			},
 		}
 	}
 </script>

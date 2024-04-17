@@ -100,26 +100,23 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniBreadcrumb: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb/uni-breadcrumb.vue */ 220))
-    },
-    uniBreadcrumbItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item */ "uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-breadcrumb/components/uni-breadcrumb-item/uni-breadcrumb-item.vue */ 227))
+    uniNavBar: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
     },
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 234))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 220))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 250))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 236))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 257))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 243))
     },
     uniRate: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-rate/components/uni-rate/uni-rate */ "uni_modules/uni-rate/components/uni-rate/uni-rate").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-rate/components/uni-rate/uni-rate.vue */ 297))
     },
     uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 264))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 250))
     },
   }
 } catch (e) {
@@ -178,19 +175,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -272,7 +261,7 @@ var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
 //
 var _default = {
   data: function data() {
-    return (0, _defineProperty2.default)({
+    return {
       value: '',
       comment: '',
       item: {
@@ -284,16 +273,6 @@ var _default = {
         comment: '',
         selectedMaintainerPhone: ''
       },
-      routes: [
-        // {
-        // 	to: "/pages/index/index",
-        // 	name: "首页",
-        // },
-        // {
-        // 	to: "/pages/service/service",
-        // 	name: "维修订单列表",
-        // }
-      ],
       disableEvaluate: true,
       maintainerList: [],
       dispatchMaintainer: false,
@@ -301,10 +280,7 @@ var _default = {
       beforeFinished: true,
       selectedMaintainerId: '',
       selectedMaintainerPhone: ''
-    }, "routes", [{
-      to: "/pages/index/index",
-      name: "首页"
-    }]);
+    };
   },
   onLoad: function onLoad(param) {
     var _this = this,
@@ -457,6 +433,12 @@ var _default = {
             url: '/pages/service/service'
           });
         }
+      });
+    },
+    clickLeft: function clickLeft() {},
+    back: function back() {
+      uni.switchTab({
+        url: "/pages/index/index"
       });
     }
   }

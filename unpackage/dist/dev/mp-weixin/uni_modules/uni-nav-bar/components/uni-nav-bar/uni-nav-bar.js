@@ -80,7 +80,7 @@ var components
 try {
   components = {
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 364))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 371))
     },
   }
 } catch (e) {
@@ -164,7 +164,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var statusBar = function statusBar() {
   __webpack_require__.e(/*! require.ensure | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar").then((function () {
-    return resolve(__webpack_require__(/*! ./uni-status-bar.vue */ 372));
+    return resolve(__webpack_require__(/*! ./uni-status-bar.vue */ 379));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var getVal = function getVal(val) {

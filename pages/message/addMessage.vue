@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<uni-forms :modelValue="formData">
 			<uni-forms-item label="留言标题" name="title" class="form">
 				<uni-easyinput type="text" v-model="formData.title" placeholder="请输入留言标题" />
@@ -69,6 +70,13 @@
 							url: '/pages/message/message'
 						})
 					},
+				})
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
 				})
 			},
 			// dialogDeleteConfirm() {

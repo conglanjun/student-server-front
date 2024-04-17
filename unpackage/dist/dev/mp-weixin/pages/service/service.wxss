@@ -6,4 +6,8 @@
 }
 .left-aligned-button { position: absolute; left: 0;
 }
+.demo-uni-row {
+	margin-bottom: 10px;
+}
+.uni-select__selector{height: 200rpx;}
 

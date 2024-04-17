@@ -100,8 +100,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uniNavBar: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
+    },
     hbComment: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/hb-comment/components/hb-comment/hb-comment */ "uni_modules/hb-comment/components/hb-comment/hb-comment").then(__webpack_require__.bind(null, /*! @/uni_modules/hb-comment/components/hb-comment/hb-comment.vue */ 438))
+      return __webpack_require__.e(/*! import() | uni_modules/hb-comment/components/hb-comment/hb-comment */ "uni_modules/hb-comment/components/hb-comment/hb-comment").then(__webpack_require__.bind(null, /*! @/uni_modules/hb-comment/components/hb-comment/hb-comment.vue */ 358))
     },
   }
 } catch (e) {
@@ -165,6 +168,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
+//
 //
 //
 //
@@ -280,11 +284,12 @@ var _default = {
         "createTime": "2021-07-14 11:01:23"
       }]
     };
-    this.commentData = {
-      "readNumer": this.res.readNumer,
-      "commentSize": this.res.commentList.length,
-      "comment": this.getTree(this.res.commentList)
-    };
+    // this.commentData = {
+    //     "readNumer": this.res.readNumer,
+    //     "commentSize": this.res.commentList.length,
+    //     "comment": this.getTree(this.res.commentList)
+    // }
+    this.getCommentList();
   },
   methods: {
     update: function update() {
@@ -348,27 +353,16 @@ var _default = {
     sendComment: function sendComment(data) {
       var _this2 = this;
       console.log(data);
-      var type = 0;
-      if (data.pId) {
-        type = 1;
-      }
-      var form = {
-        "content": data.content,
-        "blogId": this.item.id,
-        "type": type,
-        "parentId": data.pId
-      };
-      // addCommentBlog(form).then(response=>{
-      // 	this.$refs.hbComment.closeInput();
-      // 	this.getCommentList();
-      // })
       uni.request({
         url: this.$api.defConfig.def().baseUrl + 'api/comment/save',
         method: 'POST',
         data: {
-          title: this.formData.title,
-          message: this.formData.message,
-          userId: this.creatorId
+          articleId: this.item.id,
+          commentUserId: this.loginInfo.id,
+          parentId: data.pId,
+          content: data.content,
+          like: '[]',
+          status: 1
         },
         success: function success(res) {
           _this2.$refs.hbComment.closeInput();
@@ -376,30 +370,59 @@ var _default = {
         }
       });
     },
-    delcomment: function (_delcomment) {
-      function delcomment(_x) {
-        return _delcomment.apply(this, arguments);
-      }
-      delcomment.toString = function () {
-        return _delcomment.toString();
-      };
-      return delcomment;
-    }(function (data) {
+    delcomment: function delcomment(data) {
       var _this3 = this;
-      delcomment(data).then(function (response) {
-        _this3.getCommentList();
+      uni.request({
+        url: this.$api.defConfig.def().baseUrl + 'api/comment/delete/' + data,
+        method: 'DELETE',
+        success: function success(res) {
+          if (res.data.code === 200) {
+            _this3.getCommentList();
+          }
+        }
       });
-    }),
+    },
     getCommentList: function getCommentList() {
-      // listCommentBlogMinApp({"blogId":this.item.id}).then(res=>{
-      // 	// res.readNumer = 193;
-      // 	res.commentList=res.data.rows;
-      // 	this.commentData = {
-      // 		"readNumer": res.readNumer,
-      // 		"commentSize": res.commentList.length,
-      // 		"comment": this.getTree(res.commentList)
-      // 	}
-      // })
+      var _this4 = this;
+      uni.request({
+        url: this.$api.defConfig.def().baseUrl + 'api/comment/list?messageId=' + this.item.id + '&userId=' + this.loginInfo.id,
+        method: 'GET',
+        success: function success(res) {
+          if (res.data.code === 200) {
+            var _res$data$commentData2;
+            console.log(res.data);
+            for (var i = 0; i < ((_res$data$commentData = res.data.commentDataList) === null || _res$data$commentData === void 0 ? void 0 : _res$data$commentData.length); i++) {
+              var _res$data$commentData;
+              res.data.commentDataList[i].createTime = res.data.commentDataList[i].displayCreateTime;
+              res.data.commentDataList[i].updateTime = res.data.commentDataList[i].displayUpdateTime;
+            }
+            _this4.commentData = {
+              "readNumer": res.data.readNumer,
+              "commentSize": (_res$data$commentData2 = res.data.commentDataList) === null || _res$data$commentData2 === void 0 ? void 0 : _res$data$commentData2.length,
+              "comment": _this4.getTree(res.data.commentDataList)
+            };
+          }
+        }
+      });
+    },
+    like: function like(data) {
+      var _this5 = this;
+      console.log(data);
+      uni.request({
+        url: this.$api.defConfig.def().baseUrl + 'api/comment/like?commentId=' + data + '&userId=' + this.loginInfo.id,
+        method: 'GET',
+        success: function success(res) {
+          if (res.data.code === 200) {
+            _this5.getCommentList();
+          }
+        }
+      });
+    },
+    clickLeft: function clickLeft() {},
+    back: function back() {
+      uni.switchTab({
+        url: "/pages/index/index"
+      });
     }
   }
 };

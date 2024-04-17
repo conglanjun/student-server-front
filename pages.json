@@ -28,7 +28,7 @@
 			"path" : "pages/service/service",
 			"style" : 
 			{
-				"navigationBarTitleText" : "订单列表",
+				"navigationBarTitleText" : "订单统计",
 				"enablePullDownRefresh" : false
 			}
 		},
