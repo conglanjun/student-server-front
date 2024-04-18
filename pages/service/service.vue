@@ -5,37 +5,37 @@
 			<!-- <button class="container right-aligned-button uni-bg-blue1" @click="addService" style="background-color: #b88e22;font-size: 12px; color: white;width: 80ps;">提交维修单</button> -->
 			
 			<uni-row class="demo-uni-row">
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">已提交: {{submittedNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">待接单: {{pendingOrderNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">已接单: {{receivedOrderNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">拒绝接单: {{rejectOrderNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">维修中: {{handlingNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">已完成: {{doneNum}}</span>
 					</uni-text>
 				</uni-col>
-				<uni-col :span="5">
+				<uni-col :span="6">
 					<uni-text>
 						<span style="font-size: 14px; color: #606266;">评价完: {{finishedNum}}</span>
 					</uni-text>
@@ -246,17 +246,6 @@
 					method: 'GET',
 					success: (res) => {
 						if (res.data.code === 200) {
-							for(let i = 0; i < res.data.serviceDataList.length; i++) {
-								// if (res.data.serviceDataList[i].status === "FINISHED") {
-								// 	res.data.serviceDataList[i].color = '#B6FFA3'
-								// } else if (res.data.serviceDataList[i].status === "DONE") {
-								// 	res.data.serviceDataList[i].color = '#C7F0FE'
-								// } else if (res.data.serviceDataList[i].status === "HANDLING") {
-								// 	res.data.serviceDataList[i].color = '#FEDDC7'
-								// } else if (res.data.serviceDataList[i].status === "SUBMITTED") {
-								// 	res.data.serviceDataList[i].color = '#FBFEC7'
-								// }
-							}
 							this.items = res.data.serviceDataList
 							console.log(this.items)
 						}

@@ -4,7 +4,7 @@
 		<uni-row class="demo-uni-row">
 			<uni-col :span="6">
 				<uni-text>
-					<span style="font-size: 14px; color: #606266;">订单状态:</span>
+					<span style="font-size: 14px; color: #606266;">分配状态:</span>
 				</uni-text>
 			</uni-col>
 			<uni-col :span="6">
@@ -29,6 +29,7 @@
 				value: 0,
 				items:[
 				],
+				statusList: [],
 			}
 		},
 		onLoad(param) {
@@ -40,7 +41,7 @@
 				{
 					"text": "已分配",
 					"value": "DISPATCHED"
-				},
+				}
 			]
 			this.loadServiceList(null)
 		},
@@ -68,7 +69,7 @@
 			},			
 			onClick(id) {
 				uni.redirectTo({
-				  url: '/pages/service/detail?id=' + id
+				  url: '/pages/service/detail?id=' + id + '&type=dispatch'
 				})
 			},
 			selectChange(e) {

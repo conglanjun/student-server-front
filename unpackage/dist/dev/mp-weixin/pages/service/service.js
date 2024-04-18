@@ -101,22 +101,22 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 219))
     },
     uniRow: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 178))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 184))
     },
     uniCol: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 185))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 191))
     },
     uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 250))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 256))
     },
     uniList: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 283))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 268))
     },
     uniListItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 290))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 275))
     },
   }
 } catch (e) {
@@ -298,7 +298,6 @@ var _default = {
       "num": 0
     }];
     // this.loadServiceList(param)
-    var requestUrl = 'api/serviceList';
     var userInfo = (0, _storage.get)('loginInfo');
     var requestUrl = 'api/serviceList';
     if ((userInfo === null || userInfo === void 0 ? void 0 : (_userInfo$role = userInfo.role) === null || _userInfo$role === void 0 ? void 0 : _userInfo$role.name) === "student") {
@@ -376,7 +375,7 @@ var _default = {
       });
     },
     onClick: function onClick(id) {
-      uni.navigateTo({
+      uni.redirectTo({
         url: '/pages/service/detail?id=' + id
       });
     },
@@ -416,17 +415,6 @@ var _default = {
         method: 'GET',
         success: function success(res) {
           if (res.data.code === 200) {
-            for (var i = 0; i < res.data.serviceDataList.length; i++) {
-              // if (res.data.serviceDataList[i].status === "FINISHED") {
-              // 	res.data.serviceDataList[i].color = '#B6FFA3'
-              // } else if (res.data.serviceDataList[i].status === "DONE") {
-              // 	res.data.serviceDataList[i].color = '#C7F0FE'
-              // } else if (res.data.serviceDataList[i].status === "HANDLING") {
-              // 	res.data.serviceDataList[i].color = '#FEDDC7'
-              // } else if (res.data.serviceDataList[i].status === "SUBMITTED") {
-              // 	res.data.serviceDataList[i].color = '#FBFEC7'
-              // }
-            }
             _this2.items = res.data.serviceDataList;
             console.log(_this2.items);
           }

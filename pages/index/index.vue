@@ -28,143 +28,98 @@
 			<!-- #endif -->
 		</view>
 		
+		<uni-row v-if="showAdmin">
+			<uni-col :span="8">
+				<view @click="onClick('building')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/building.png"></image>
+				</view>
+			</uni-col>
+			<uni-col :span="8">
+				<view @click="onClick('consumption')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/consumption.png"></image>
+				</view>
+			</uni-col>
+			<uni-col :span="8">
+				<view @click="onClick('consumptionRecord')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/consumptionRecord.png"></image>
+				</view>
+			</uni-col>
+		</uni-row>
 		<!-- #ifdef H5 -->
 		<uni-row v-if="showAdmin">
 			<uni-col :span="8">
-				<uni-section title="宿舍管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
-						<image mode="widthFix" style="width: 20%; align-content: center;" src="/static/building.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('person')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/person.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="8">
-				<uni-section title="耗材管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
-						<image mode="widthFix" style="width: 20%; align-content: center;" src="/static/consumption.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('notice')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/notice.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="8">
-				<uni-section title="耗材记录" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
-						<image mode="widthFix" style="width: 20%; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-		</uni-row>
-		<!-- #endif -->
-		
-		<!-- #ifdef MP-WEIXIN -->
-		<uni-row v-if="showAdmin">
-			<uni-col :span="8">
-				<uni-section title="宿舍管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
-						<image mode="widthFix" style="width: 80%; align-content: center;" src="/static/building.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-			<uni-col :span="8">
-				<uni-section title="耗材管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
-						<image mode="widthFix" style="width: 80%; align-content: center;" src="/static/consumption.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-			<uni-col :span="8">
-				<uni-section title="耗材记录" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
-						<image mode="widthFix" style="width: 80%; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-		</uni-row>
-		<!-- #endif -->
-		<!-- #ifdef H5 -->
-		<uni-row v-if="showAdmin">
-			<uni-col :span="8">
-				<uni-section title="人员管理" type="circle" titleColor="#a17b17" style="font-size: 10px;">
-					<uni-card :is-shadow="true" @click="onClick('person')" class="center">
-						<image mode="widthFix" style="width: 20%; " src="/static/person.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-			<uni-col :span="8">
-				<uni-section title="公告管理" type="square" titleColor="#a17b17">
-					<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
-						<image mode="widthFix" style="width: 20%; " src="/static/notice.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
-			<uni-col :span="8">
-				<uni-section title="维修类型" type="square" titleColor="#a17b17">
-					<uni-card :is-shadow="true" @click="onClick('serviceType')" class="center">
-						<image mode="widthFix" style="width: 20%; align-content: center;" src="/static/serviceType.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('serviceType')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/serviceType.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<!-- #endif -->
 		<!-- #ifdef MP-WEIXIN -->
 		<uni-row v-if="showAdmin">
 			<uni-col :span="12">
-				<uni-section title="公告管理" type="square" titleColor="#a17b17">
-					<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
-						<image mode="widthFix" style="width: 30%; " src="/static/notice.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('notice')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/notice.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
-				<uni-section title="维修类型" type="square" titleColor="#a17b17">
-					<uni-card :is-shadow="true" @click="onClick('serviceType')" class="center">
-						<image mode="widthFix" style="width: 30%; align-content: center;" src="/static/serviceType.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('serviceType')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/serviceType.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<!-- #endif -->
 		
 		<uni-row v-if="showMaintenance">
 			<uni-col :span="12">
-				<uni-section title="耗材管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('myDispatch')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/myDispatched.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
-				<uni-section title="维修管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('comment')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/comment.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<uni-row v-if="showMaintenance">
 			<uni-col :span="12">
-				<!-- <uni-section title="留言管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
-					</uni-card>
-				</uni-section> -->
+				<view @click="onClick('orderStatistics')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/orderStatistics.png"></image>
+				</view>
+			</uni-col>
+			<uni-col :span="12">
+				<view @click="onClick('consumptionRecord')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/consumptionRecord.png"></image>
+				</view>
+			</uni-col>
+		</uni-row>
+		<uni-row v-if="showMaintenance">
+			<uni-col :span="12">
+				<view @click="onClick('consumptionRecord')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/consumptionRecord.png"></image>
+				</view>
+			</uni-col>
+			<uni-col :span="12">
 				<view @click="onClick('message')" class="center">
 					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/message2.png"></image>
 				</view>
 			</uni-col>
-			<uni-col :span="12">
-				<uni-section title="耗材记录" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
-					</uni-card>
-				</uni-section>
-			</uni-col>
 		</uni-row>
 		<uni-row v-if="showMaintenanceManage">
 			<uni-col :span="8">
-				<uni-section title="耗材管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumption')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumption.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('consumption')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/consumption.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="8">
 				<view @click="onClick('service')" class="center">
@@ -179,51 +134,46 @@
 		</uni-row>
 		<uni-row v-if="showMaintenanceManage">
 			<uni-col :span="12">
-				<uni-section title="留言管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('message')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/message2.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
-				<uni-section title="耗材记录" type="line">
-					<uni-card :is-shadow="true" @click="onClick('consumptionRecord')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/consumptionRecord.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('consumptionRecord')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/consumptionRecord.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		</uni-row>
 		<uni-row v-if="showDormitory">	
 			<uni-col :span="12">
-				<uni-section title="维修管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('tool')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/tool1.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('notice')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center; margin-left: 10rpx;" src="/static/notice.png"></image>
+				</view>
 			</uni-col>
 			<uni-col :span="12">
-				<uni-section title="留言管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('message')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/message.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('building')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/building.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<uni-row v-if="showDormitory">
 			<uni-col :span="12">
-				<uni-section title="宿舍管理" type="line">
-					<uni-card :is-shadow="true" @click="onClick('building')" class="center">
-						<image style="width: 30px; height: 30px; align-content: center;" src="/static/building.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('buildingOrder')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/buildingOrder.png"></image>
+				</view>
 			</uni-col>		
 		    <uni-col :span="12">
-				<uni-section title="公告管理" type="square" titleColor="#a17b17">
-					<uni-card :is-shadow="true" @click="onClick('notice')" class="center">
-						<image style="width: 30px; height: 30px;" src="/static/notice.png"></image><br/>
-					</uni-card>
-				</uni-section>
+				<view @click="onClick('tool')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/tool.png"></image>
+				</view>
+			</uni-col>
+		</uni-row>
+		<uni-row v-if="showDormitory">
+			<uni-col :span="12">
+				<view @click="onClick('message')" class="center">
+					<image mode="widthFix" style="width: 150rpx; align-content: center;" src="/static/message2.png"></image>
+				</view>
 			</uni-col>
 		</uni-row>
 		<uni-row v-if="showStudent">
@@ -403,6 +353,22 @@
 				} else if (type === 'dispatch') {
 					uni.reLaunch({
 						url: "/pages/service/dispatch"
+					})
+				} else if (type === 'myDispatch') {
+					uni.reLaunch({
+						url: "/pages/service/myDispatch"
+					})
+				} else if (type === 'comment') {
+					uni.reLaunch({
+						url: "/pages/service/comment"
+					})
+				} else if (type === 'orderStatistics') {
+					uni.reLaunch({
+						url: "/pages/service/orderStatistics"
+					})
+				} else if (type === 'buildingOrder') {
+					uni.reLaunch({
+						url: "/pages/service/buildingOrder"
 					})
 				} else if (type === 'consumption') {
 					uni.reLaunch({

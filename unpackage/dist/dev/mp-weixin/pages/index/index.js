@@ -101,19 +101,13 @@ var components
 try {
   components = {
     uniRow: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 178))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 184))
     },
     uniCol: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 185))
-    },
-    uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 192))
-    },
-    uniCard: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 199))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 191))
     },
     uniPopup: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 206))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 212))
     },
   }
 } catch (e) {
@@ -177,58 +171,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -584,6 +526,26 @@ var _default = {
       } else if (type === 'service') {
         uni.reLaunch({
           url: "/pages/service/service?creatorId=" + (0, _storage.get)('loginInfo').id
+        });
+      } else if (type === 'dispatch') {
+        uni.reLaunch({
+          url: "/pages/service/dispatch"
+        });
+      } else if (type === 'myDispatch') {
+        uni.reLaunch({
+          url: "/pages/service/myDispatch"
+        });
+      } else if (type === 'comment') {
+        uni.reLaunch({
+          url: "/pages/service/comment"
+        });
+      } else if (type === 'orderStatistics') {
+        uni.reLaunch({
+          url: "/pages/service/orderStatistics"
+        });
+      } else if (type === 'buildingOrder') {
+        uni.reLaunch({
+          url: "/pages/service/buildingOrder"
         });
       } else if (type === 'consumption') {
         uni.reLaunch({

@@ -25,6 +25,11 @@
 						<span style="font-size: 14px; color: #606266;">状态: 	{{item.displayStatus}}</span>
 					</uni-text>
 				</view>
+				<view v-show="showReject" style="margin-bottom:22px;">
+					<uni-text>
+						<span style="font-size: 14px; color: #606266;">拒单详情: 	{{item.rejectDetail}}</span>
+					</uni-text>
+				</view>
 				<!-- </uni-forms-item> -->
 								
 				<view style="margin-bottom:22px;">
@@ -54,7 +59,7 @@
 				<uni-forms-item label="维修单留言">
 					<uni-easyinput type="textarea" height="170" v-model="item.comment" :disabled="disableEvaluate || !beforeFinished" placeholder="其他想说的..."></uni-easyinput >
 				</uni-forms-item>
-				<uni-forms-item label="分配维修人员">
+				<uni-forms-item label="分配维修人员" v-show="showDispatch">
 					<uni-data-select :disabled="!dispatchMaintainer"
 						v-model="selectedMaintainerId"
 						:localdata="maintainerList"
@@ -68,11 +73,22 @@
 						<span style="font-size: 14px; color: #606266;">报修人电话: 	{{item.selectedMaintainerPhone}}</span>
 					</uni-text>
 				</view>
+				
+				<uni-popup ref="rejectDialog" type="dialog">
+					<uni-popup-dialog mode="base" title="拒单原因" :value="rejectDialogText" @close="rejectDialogClose" @confirm="rejectDialogConfirm">
+						<uni-forms-item label="拒单原因" name="title" class="form">
+							<uni-easyinput type="text" v-model="item.rejectDetail" placeholder="请输入拒绝订单原因" />
+						</uni-forms-item>
+					</uni-popup-dialog>
+				</uni-popup>
 			</uni-forms>
 			<button class="anniu" v-show="!dispatchMaintainer && !dispatchDone" type="success" style="width: 80vw;font-size: 12px; background-color: #4ba5f6;" :disabled="disableEvaluate || !beforeFinished" @click="evaluationFinish">更新评价</button>
-			<button class="anniu" v-show="dispatchMaintainer" type="success" style="width: 80vw;font-size: 12px; background-color: #02bb18;" @click="dispatchMaintain">分配维修</button>
+			<button class="anniu" v-show="dispatchMaintainerManage" type="success" style="width: 80vw;font-size: 12px; background-color: #02bb18;" @click="dispatchMaintain">分配维修</button>
 			<button class="anniu" v-show="dispatchDone" type="success" style="width: 80vw;font-size: 12px; background-color: #990033; color: aliceblue;" @click="dispatchFinish">完成</button>
 			<button class="anniu" v-show="!disableEvaluate" type="success" style="width: 80vw;font-size: 12px; background-color: #990033; color: aliceblue;" @click="deleteItem">删除</button>
+			<button class="anniu" v-show="canReceive && !dispatchDone && !isDone" type="success" style="width: 80vw;font-size: 12px; background-color: #02bb18;" @click="receive('RECEIVEDORDER')">接单</button>
+			<button class="anniu" v-show="canReceive && !dispatchDone && !isDone" type="success" style="width: 80vw;font-size: 12px; background-color: #990033;" @click="rejectReceive">拒绝接单</button>
+			<button class="anniu" v-show="canHandle" type="success" style="width: 80vw;font-size: 12px; background-color: #02bb18;" @click="receive('HANDLING')">维修中</button>
 		</view>
 	</view>
 </template>
@@ -82,6 +98,7 @@
 	export default {
 		data() {
 			return {
+				rejectDialogText: '',
 				value: '',
 				comment:'',
 				item:{
@@ -96,15 +113,27 @@
 				disableEvaluate: true,
 				maintainerList: [],
 				dispatchMaintainer: false,
+				dispatchMaintainerManage: false,
 				dispatchDone: false,
 				beforeFinished: true,
 				selectedMaintainerId: '',
 				selectedMaintainerPhone: '',
+				showDispatch: false,
+				canReceive: false,
+				showReject: false,
+				canHandle: false,
+				isDone: false,
 			}
 		},
 		onLoad(param){
 			this.listUser('maintainer')
 			console.log(param)
+			if (param.type === 'dispatch' || param.type === 'myDispatch') {
+				this.showDispatch = true
+			}
+			if (param.type === 'myDispatch') {
+				this.canReceive = true
+			}
 			this.item.id = param.id
 			uni.request({
 				// #ifdef H5
@@ -116,7 +145,7 @@
 				method: 'GET',
 				success: (res) => {
 					if (res.data.code === 200) {
-						if (res.data.serviceData.rate === 'undefined' || res.data.serviceData.rate === null || res.data.serviceData.rate === 'null') {
+						if (typeof res.data.serviceData.rate === 'undefined' || res.data.serviceData.rate === null || res.data.serviceData.rate === 'null') {
 							res.data.serviceData.rate = 0
 						}
 						console.log(res.data.serviceData)
@@ -128,16 +157,35 @@
 						if (res.data.serviceData.status === "HANDLING") {
 							this.dispatchDone = true
 						}
+						if (res.data.serviceData.status === "REJECTORDER") {
+							this.showReject = true
+						}
+						if (res.data.serviceData.status === "RECEIVEDORDER") {
+							this.canReceive = false
+						}
+						
 						this.selectedMaintainerId = res.data.serviceData?.maintainer?.id
 						this.selectedMaintainerPhone = res.data.serviceData?.maintainer?.phone
 						this.item.selectedMaintainerPhone = res.data.serviceData?.maintainer?.phone
 						console.log("this.selectedMaintainerId:" + this.selectedMaintainerId)
 						console.log("this.selectedMaintainerPhone:" + this.selectedMaintainerPhone)
-						console.log("this.selectedMaintainerPhone:" + this.selectedMaintainerPhone)
+						console.log("this.item.comment:" + this.item.comment)
+						if (typeof this.item.selectedMaintainerPhone === 'undefined' || this.item.selectedMaintainerPhone === null || this.item.selectedMaintainerPhone === 'null' || this.item.selectedMaintainerPhone === '') {
+							this.item.selectedMaintainerPhone = '无';
+						}
+						if (typeof this.item.comment === 'undefined' || this.item.comment === null || this.item.comment === 'null' || this.item.comment === 'NULL' || this.item.comment === '') {
+							this.item.comment = '无';
+						}
 						if (res.data.serviceData.status === 'DONE') {
 							this.beforeFinished = true
 						} else {
 							this.beforeFinished = false
+						}
+						if (res.data.serviceData.status === 'FINISHED' || res.data.serviceData.status === 'DONE') {
+							this.isDone = true
+						}
+						if (loginInfo?.role?.name === "maintainer" && res.data.serviceData.status === "RECEIVEDORDER") {
+							this.canHandle = true
 						}
 					}
 				},
@@ -152,8 +200,12 @@
 				this.disableEvaluate = true
 			}
 			this.dispatchMaintainer = false
-			if (loginInfo?.role?.name === "maintenance-manager") {
+			if (loginInfo?.role?.name === "maintenance-manager" || loginInfo?.role?.name === 'maintainer') {
 				this.dispatchMaintainer = true
+			}
+			this.dispatchMaintainerManage = false
+			if (loginInfo?.role?.name === "maintenance-manager") {
+				this.dispatchMaintainerManage = true
 			}
 		},
 		methods: {
@@ -209,6 +261,15 @@
 					},
 				})
 			},
+			rejectDialogClose() {
+				this.$refs.rejectDialog.close()
+			},
+			rejectDialogConfirm() {
+				this.receive('REJECTORDER')
+			},
+			rejectReceive() {
+				this.$refs.rejectDialog.open()
+			},
 			dispatchMaintain() {
 				uni.request({
 					// #ifdef H5
@@ -221,7 +282,7 @@
 					data: {
 					  id: this.item.id,
 					  maintainerId: this.selectedMaintainerId,
-					  status: 'HANDLING'
+					  status: 'PENDINGORDER'
 					},
 					success: (res) => {
 						uni.showToast({
@@ -229,6 +290,34 @@
 						})
 						uni.navigateTo({
 							url: '/pages/service/service'
+						})
+					},
+				})
+			},
+			receive(status) {
+				let data = {
+				  "id": this.item.id,
+				  "maintainerId": this.selectedMaintainerId,
+				  "status": status
+				}
+				if (status === 'REJECTORDER') {
+					data.rejectDetail = this.item.rejectDetail
+				}
+				uni.request({
+					// #ifdef H5
+					url: 'api/service/update',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/service/update',
+					// #endif
+					method: 'POST',
+					data: data,
+					success: (res) => {
+						uni.showToast({
+						  title: '分配成功'
+						})
+						uni.redirectTo({
+							url: '/pages/service/myDispatch'
 						})
 					},
 				})
@@ -250,8 +339,8 @@
 						uni.showToast({
 						  title: '完成'
 						})
-						uni.navigateTo({
-							url: '/pages/service/service'
+						uni.redirectTo({
+							url: '/pages/service/myDispatch'
 						})
 					},
 				})

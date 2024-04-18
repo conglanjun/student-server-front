@@ -101,22 +101,28 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 213))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar */ "uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue */ 219))
     },
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 220))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 226))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 236))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 242))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 243))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 249))
     },
     uniRate: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-rate/components/uni-rate/uni-rate */ "uni_modules/uni-rate/components/uni-rate/uni-rate").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-rate/components/uni-rate/uni-rate.vue */ 297))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-rate/components/uni-rate/uni-rate */ "uni_modules/uni-rate/components/uni-rate/uni-rate").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-rate/components/uni-rate/uni-rate.vue */ 282))
     },
     uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 250))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 256))
+    },
+    uniPopup: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 212))
+    },
+    uniPopupDialog: function () {
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 332))
     },
   }
 } catch (e) {
@@ -259,9 +265,26 @@ var _storage = __webpack_require__(/*! @/common/storage.js */ 41);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      rejectDialogText: '',
       value: '',
       comment: '',
       item: {
@@ -276,27 +299,41 @@ var _default = {
       disableEvaluate: true,
       maintainerList: [],
       dispatchMaintainer: false,
+      dispatchMaintainerManage: false,
       dispatchDone: false,
       beforeFinished: true,
       selectedMaintainerId: '',
-      selectedMaintainerPhone: ''
+      selectedMaintainerPhone: '',
+      showDispatch: false,
+      canReceive: false,
+      showReject: false,
+      canHandle: false,
+      isDone: false
     };
   },
   onLoad: function onLoad(param) {
     var _this = this,
-      _loginInfo$role2,
       _loginInfo$role3,
-      _loginInfo$role4;
+      _loginInfo$role4,
+      _loginInfo$role5,
+      _loginInfo$role6,
+      _loginInfo$role7;
     this.listUser('maintainer');
     console.log(param);
+    if (param.type === 'dispatch' || param.type === 'myDispatch') {
+      this.showDispatch = true;
+    }
+    if (param.type === 'myDispatch') {
+      this.canReceive = true;
+    }
     this.item.id = param.id;
     uni.request({
       url: this.$api.defConfig.def().baseUrl + 'api/service/' + this.item.id,
       method: 'GET',
       success: function success(res) {
         if (res.data.code === 200) {
-          var _loginInfo$role, _this$item$creator, _res$data$serviceData, _res$data$serviceData2, _res$data$serviceData3, _res$data$serviceData4, _res$data$serviceData5, _res$data$serviceData6;
-          if (res.data.serviceData.rate === 'undefined' || res.data.serviceData.rate === null || res.data.serviceData.rate === 'null') {
+          var _loginInfo$role, _this$item$creator, _res$data$serviceData, _res$data$serviceData2, _res$data$serviceData3, _res$data$serviceData4, _res$data$serviceData5, _res$data$serviceData6, _loginInfo$role2;
+          if (typeof res.data.serviceData.rate === 'undefined' || res.data.serviceData.rate === null || res.data.serviceData.rate === 'null') {
             res.data.serviceData.rate = 0;
           }
           console.log(res.data.serviceData);
@@ -308,30 +345,52 @@ var _default = {
           if (res.data.serviceData.status === "HANDLING") {
             _this.dispatchDone = true;
           }
+          if (res.data.serviceData.status === "REJECTORDER") {
+            _this.showReject = true;
+          }
+          if (res.data.serviceData.status === "RECEIVEDORDER") {
+            _this.canReceive = false;
+          }
           _this.selectedMaintainerId = (_res$data$serviceData = res.data.serviceData) === null || _res$data$serviceData === void 0 ? void 0 : (_res$data$serviceData2 = _res$data$serviceData.maintainer) === null || _res$data$serviceData2 === void 0 ? void 0 : _res$data$serviceData2.id;
           _this.selectedMaintainerPhone = (_res$data$serviceData3 = res.data.serviceData) === null || _res$data$serviceData3 === void 0 ? void 0 : (_res$data$serviceData4 = _res$data$serviceData3.maintainer) === null || _res$data$serviceData4 === void 0 ? void 0 : _res$data$serviceData4.phone;
           _this.item.selectedMaintainerPhone = (_res$data$serviceData5 = res.data.serviceData) === null || _res$data$serviceData5 === void 0 ? void 0 : (_res$data$serviceData6 = _res$data$serviceData5.maintainer) === null || _res$data$serviceData6 === void 0 ? void 0 : _res$data$serviceData6.phone;
           console.log("this.selectedMaintainerId:" + _this.selectedMaintainerId);
           console.log("this.selectedMaintainerPhone:" + _this.selectedMaintainerPhone);
-          console.log("this.selectedMaintainerPhone:" + _this.selectedMaintainerPhone);
+          console.log("this.item.comment:" + _this.item.comment);
+          if (typeof _this.item.selectedMaintainerPhone === 'undefined' || _this.item.selectedMaintainerPhone === null || _this.item.selectedMaintainerPhone === 'null' || _this.item.selectedMaintainerPhone === '') {
+            _this.item.selectedMaintainerPhone = '无';
+          }
+          if (typeof _this.item.comment === 'undefined' || _this.item.comment === null || _this.item.comment === 'null' || _this.item.comment === 'NULL' || _this.item.comment === '') {
+            _this.item.comment = '无';
+          }
           if (res.data.serviceData.status === 'DONE') {
             _this.beforeFinished = true;
           } else {
             _this.beforeFinished = false;
+          }
+          if (res.data.serviceData.status === 'FINISHED' || res.data.serviceData.status === 'DONE') {
+            _this.isDone = true;
+          }
+          if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role2 = loginInfo.role) === null || _loginInfo$role2 === void 0 ? void 0 : _loginInfo$role2.name) === "maintainer" && res.data.serviceData.status === "RECEIVEDORDER") {
+            _this.canHandle = true;
           }
         }
       },
       fail: function fail(res) {}
     });
     var loginInfo = (0, _storage.get)('loginInfo');
-    if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role2 = loginInfo.role) === null || _loginInfo$role2 === void 0 ? void 0 : _loginInfo$role2.name) === "admin" || (loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role3 = loginInfo.role) === null || _loginInfo$role3 === void 0 ? void 0 : _loginInfo$role3.name) === 'dormitory-manager') {
+    if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role3 = loginInfo.role) === null || _loginInfo$role3 === void 0 ? void 0 : _loginInfo$role3.name) === "admin" || (loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role4 = loginInfo.role) === null || _loginInfo$role4 === void 0 ? void 0 : _loginInfo$role4.name) === 'dormitory-manager') {
       this.disableEvaluate = false;
     } else {
       this.disableEvaluate = true;
     }
     this.dispatchMaintainer = false;
-    if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role4 = loginInfo.role) === null || _loginInfo$role4 === void 0 ? void 0 : _loginInfo$role4.name) === "maintenance-manager") {
+    if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role5 = loginInfo.role) === null || _loginInfo$role5 === void 0 ? void 0 : _loginInfo$role5.name) === "maintenance-manager" || (loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role6 = loginInfo.role) === null || _loginInfo$role6 === void 0 ? void 0 : _loginInfo$role6.name) === 'maintainer') {
       this.dispatchMaintainer = true;
+    }
+    this.dispatchMaintainerManage = false;
+    if ((loginInfo === null || loginInfo === void 0 ? void 0 : (_loginInfo$role7 = loginInfo.role) === null || _loginInfo$role7 === void 0 ? void 0 : _loginInfo$role7.name) === "maintenance-manager") {
+      this.dispatchMaintainerManage = true;
     }
   },
   methods: {
@@ -378,6 +437,15 @@ var _default = {
         }
       });
     },
+    rejectDialogClose: function rejectDialogClose() {
+      this.$refs.rejectDialog.close();
+    },
+    rejectDialogConfirm: function rejectDialogConfirm() {
+      this.receive('REJECTORDER');
+    },
+    rejectReceive: function rejectReceive() {
+      this.$refs.rejectDialog.open();
+    },
     dispatchMaintain: function dispatchMaintain() {
       uni.request({
         url: this.$api.defConfig.def().baseUrl + 'api/service/update',
@@ -385,7 +453,7 @@ var _default = {
         data: {
           id: this.item.id,
           maintainerId: this.selectedMaintainerId,
-          status: 'HANDLING'
+          status: 'PENDINGORDER'
         },
         success: function success(res) {
           uni.showToast({
@@ -393,6 +461,29 @@ var _default = {
           });
           uni.navigateTo({
             url: '/pages/service/service'
+          });
+        }
+      });
+    },
+    receive: function receive(status) {
+      var data = {
+        "id": this.item.id,
+        "maintainerId": this.selectedMaintainerId,
+        "status": status
+      };
+      if (status === 'REJECTORDER') {
+        data.rejectDetail = this.item.rejectDetail;
+      }
+      uni.request({
+        url: this.$api.defConfig.def().baseUrl + 'api/service/update',
+        method: 'POST',
+        data: data,
+        success: function success(res) {
+          uni.showToast({
+            title: '分配成功'
+          });
+          uni.redirectTo({
+            url: '/pages/service/myDispatch'
           });
         }
       });
@@ -409,8 +500,8 @@ var _default = {
           uni.showToast({
             title: '完成'
           });
-          uni.navigateTo({
-            url: '/pages/service/service'
+          uni.redirectTo({
+            url: '/pages/service/myDispatch'
           });
         }
       });

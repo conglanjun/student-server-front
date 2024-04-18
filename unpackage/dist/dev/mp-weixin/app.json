@@ -17,7 +17,12 @@
     "pages/message/detail",
     "pages/service/serviceType",
     "pages/service/consumptionRecord",
-    "pages/user/changeSecret"
+    "pages/user/changeSecret",
+    "pages/service/dispatch",
+    "pages/service/myDispatch",
+    "pages/service/comment",
+    "pages/service/orderStatistics",
+    "pages/service/buildingOrder"
   ],
   "subPackages": [],
   "window": {

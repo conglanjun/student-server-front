@@ -2,14 +2,29 @@
 	<view>
 		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view style="margin-bottom:22px;">
-			<uni-text>
-				<span style="font-size: 14px; color: #606266;">留言标题: 	{{item.title}}</span>
-			</uni-text>
+			<uni-forms :modelValue="item">
+				<uni-forms-item label="留言标题" name="title" class="form">
+					<uni-easyinput type="text" v-model="item.title" :disabled="!canDone"/>
+				</uni-forms-item>
+				<uni-forms-item label="留言详情" name="message">
+					<uni-easyinput type="textarea" v-model="item.message" :disabled="!canDone"/>
+				</uni-forms-item>				
+				<view style="margin-bottom:22px;">
+					<uni-text>
+						<span style="font-size: 14px; color: #606266;">创建时间: 	{{item.displayCreateTime}}</span>
+					</uni-text>
+				</view>
+			</uni-forms>
 		</view>
-		<view style="margin-bottom:22px;">
-			<uni-text>
-				<span style="font-size: 14px; color: #606266;">留言内容: 	{{item.message}}</span>
-			</uni-text>
+		<view>
+			<uni-row class="demo-uni-row">
+				<uni-col :span="12">
+					<button class="anniu" :disabled="!canDone" type="success" style=" margin: 10px 10px;font-size: 10px; background-color: #4ba5f6; color: aliceblue;" @click="update">修改</button>
+				</uni-col>
+				<uni-col :span="12">
+					<button class="anniu" :disabled="!canDelete" type="success" style="margin: 10px 10px;font-size: 10px; background-color: #990033; color: aliceblue;" @click="deleteItem">删除</button>
+				</uni-col>
+			</uni-row>
 		</view>
 		<view class="comment">
 		   <hb-comment ref="hbComment" @add="sendComment" @del="delcomment" @like="like" @focusOn="focusOn" :deleteTip="'确认删除？'"
