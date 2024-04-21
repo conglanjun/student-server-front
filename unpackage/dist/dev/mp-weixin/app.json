@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/HM-shophome",
     "pages/user/register",
     "pages/user/login",
     "pages/service/service",
@@ -22,7 +23,8 @@
     "pages/service/myDispatch",
     "pages/service/comment",
     "pages/service/orderStatistics",
-    "pages/service/buildingOrder"
+    "pages/service/buildingOrder",
+    "pages/service/progress"
   ],
   "subPackages": [],
   "window": {

@@ -3,8 +3,18 @@
 		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view class="content">
 			<view>
-				<button class="container right-aligned-button uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;">新增宿舍</button>
+				<uni-row>
+					<uni-col :span="8">
+						<button class="container uni-bg-blue1" @click="inputDialogToggle('add')" style="background-color: #b88e22;font-size: 12px; color: white;margin: 10px;">新增宿舍</button>
+					</uni-col>
+					<uni-col :span="8">
+						<button class="container" style="background-color: #40BBFF;font-size: 12px; color: white;margin: 10px;" @click="handleUploadClick">上传</button>
+					</uni-col>
+				</uni-row>
 				<uni-title type="h4" title="宿舍列表" style="font-size: 12px"></uni-title>
+			</view>
+			<view>
+				<xe-upload ref="XeUpload" :options="uploadOptions" @callback="handleUploadCallback"></xe-upload>
 			</view>
 			<view class="uni-container">
 				<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
@@ -65,6 +75,14 @@
 	export default {
 		data() {
 			return {
+				uploadOptions: {
+					// #ifdef H5
+					url: 'api/building/fileUpload',
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/building/fileUpload',
+					// #endif
+				},
 				dialogText:'',
 				formData: {
 					
@@ -217,6 +235,30 @@
 						this.selectedItem = {}
 					}
 				})
+			},
+			handleUploadClick() {
+				// 使用默认配置则不需要传入第二个参数
+				// type: ['image', 'video', 'file'];
+				this.$refs.XeUpload.upload('file', {});
+				// this.$refs.XeUpload.upload('image', {
+				//  count: 6,
+				//  sizeType: ['original', 'compressed'],
+				//  sourceType: ['album'],
+				// });
+			},
+			handleUploadCallback(e) {
+				// e.type: ['choose', 'success', 'warning']
+				// choose 是options没有传入url，返回临时链接时触发
+				// success 是上传成功返回对应的数据时触发
+				// warning 上传或者选择文件失败触发
+				// ......
+				console.log(e)
+				if (e && e.type === 'success') {
+					uni.showToast({
+						title: '上传成功！'
+					})
+					this.loadBuildingList()
+				}
 			},
 			clickLeft() {
 			},			

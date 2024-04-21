@@ -3,7 +3,10 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-nav-bar": "/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar",
+    "uni-row": "/uni_modules/uni-row/components/uni-row/uni-row",
+    "uni-col": "/uni_modules/uni-row/components/uni-col/uni-col",
     "uni-title": "/uni_modules/uni-title/components/uni-title/uni-title",
+    "xe-upload": "/uni_modules/xe-upload/components/xe-upload/xe-upload",
     "uni-table": "/uni_modules/uni-table/components/uni-table/uni-table",
     "uni-tr": "/uni_modules/uni-table/components/uni-tr/uni-tr",
     "uni-th": "/uni_modules/uni-table/components/uni-th/uni-th",
@@ -12,8 +15,6 @@
     "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
     "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
     "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-    "uni-row": "/uni_modules/uni-row/components/uni-row/uni-row",
-    "uni-col": "/uni_modules/uni-row/components/uni-col/uni-col",
     "uni-popup-dialog": "/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog"
   }
 }

@@ -64,7 +64,7 @@
 				success: (res) => {
 					if (res.data.code === 200) {
 						this.item = res.data.messageData
-						if (loginInfo?.id === this.item?.user.id) {
+						if (loginInfo?.id === this.item?.user.id || this.loginInfo?.role?.name === 'admin') {
 							this.canDone = true
 							this.canDelete = true
 						}

@@ -7,6 +7,14 @@
 				"navigationBarBackgroundColor": "@navBgColor",
 				"navigationBarTextStyle": "@navTxtStyle"
 			}
+		},		
+		{
+			"path" : "pages/index/HM-shophome",
+			"style" : 
+			{
+				"navigationBarTitleText" : "shop-demo",
+				"enablePullDownRefresh" : true
+			}
 		},
 		{
 			"path" : "pages/user/register",
@@ -178,6 +186,14 @@
 		},
 		{
 			"path" : "pages/service/buildingOrder",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/service/progress",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
