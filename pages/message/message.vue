@@ -1,8 +1,8 @@
 <template>
 	<view>
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
 		<view>
 			<button class="container right-aligned-button uni-bg-blue1" @click="addMessage" style="background-color: #b88e22;font-size: 12px; color: white;width: 80ps;">我要留言</button>
-			<button class="container right-aligned-button uni-bg-blue1" @click="homePage" style="background-color: #007FD9;font-size: 12px; color: white; margin-right: 100px;">首页</button>
 			<uni-title type="h1" title="留言区"></uni-title>
 		</view>
 		<uni-list v-for="(item, index) in items">
@@ -60,6 +60,13 @@
 					fail: (res) => {
 						
 					}
+				})
+			},
+			clickLeft() {
+			},			
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index",
 				})
 			},
 		}
