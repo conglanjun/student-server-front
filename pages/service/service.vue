@@ -1,6 +1,13 @@
 <template>
 	<view>
 		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
+		<view v-show="showTypeStatistics">
+			<uni-row class="demo-uni-row">
+				<uni-col :span="6">
+					<button class="container uni-bg-blue1" @click="serviceType" style="background-color: #b88e22;font-size: 12px; color: white;width: 80ps;">类型统计</button>
+				</uni-col>
+			</uni-row>
+		</view>
 		<view>
 			<!-- <button class="container right-aligned-button uni-bg-blue1" @click="addService" style="background-color: #b88e22;font-size: 12px; color: white;width: 80ps;">提交维修单</button> -->
 			
@@ -81,6 +88,7 @@
 				handlingNum: 0,
 				doneNum: 0,
 				finishedNum: 0,
+				showTypeStatistics: false,
 			}
 		},
 		onLoad(param) {
@@ -131,6 +139,8 @@
 				requestUrl += '?maintainerId=' + get('loginInfo').id
 			} else if (userInfo?.role?.name === "dormitory-manager") {
 				requestUrl += '?dormitoryManagerId=' + get('loginInfo').id
+			} else if (userInfo?.role?.name === 'maintenance-manager') {
+				this.showTypeStatistics = true
 			}
 			uni.request({
 				// #ifdef H5
@@ -253,6 +263,11 @@
 					fail: (res) => {
 						
 					}
+				})
+			},
+			serviceType() {
+				uni.navigateTo({
+					url: "/pages/service/serviceTypeStatistics",
 				})
 			},
 			clickLeft() {

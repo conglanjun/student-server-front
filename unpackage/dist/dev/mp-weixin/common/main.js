@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/main"],{
 
 /***/ 0:
-/*!**************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/main.js ***!
-  \**************************************************************/
+/*!**********************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/main.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16,8 +16,10 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 __webpack_require__(/*! uni-pages */ 26);
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 27));
 var config = _interopRequireWildcard(__webpack_require__(/*! ./config */ 33));
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 34));
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-__webpack_require__(/*! ./uni.promisify.adaptor */ 34);
+__webpack_require__(/*! ./uni.promisify.adaptor */ 36);
+var _tuniaoUi = _interopRequireDefault(__webpack_require__(/*! tuniao-ui */ 37));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -27,7 +29,15 @@ wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 var defConfig = config;
 _vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
-var app = new _vue.default(_objectSpread({}, _App.default));
+
+// 引入全局TuniaoUI
+
+_vue.default.use(_tuniaoUi.default);
+var vuexStore = __webpack_require__(/*! @/store/$tn.mixin.js */ 69);
+_vue.default.mixin(vuexStore);
+var app = new _vue.default(_objectSpread({
+  store: _store.default
+}, _App.default));
 createApp(app).$mount();
 _vue.default.prototype.$api = {
   defConfig: defConfig
@@ -37,9 +47,9 @@ _vue.default.prototype.$api = {
 /***/ }),
 
 /***/ 27:
-/*!**************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/App.vue ***!
-  \**************************************************************/
+/*!**********************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/App.vue ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -77,9 +87,9 @@ component.options.__file = "App.vue"
 /***/ }),
 
 /***/ 28:
-/*!***************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/App.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/App.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -93,9 +103,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 29:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/App.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/App.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -122,9 +132,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 30:
-/*!************************************************************************************************!*\
-  !*** /Users/conglanjun/project/student-server-front/App.vue?vue&type=style&index=0&lang=scss& ***!
-  \************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/conglanjun/HBuilderProject/student-server-front/App.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -138,9 +148,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 31:
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/project/student-server-front/App.vue?vue&type=style&index=0&lang=scss& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/conglanjun/HBuilderProject/student-server-front/App.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
