@@ -196,11 +196,15 @@
 			}
 		},
 		{
-<<<<<<< HEAD
 			"path" : "pages/service/serviceTypeStatistics",
-=======
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
 			"path" : "pages/service/progress",
->>>>>>> 2d9fa0339e86ec15ffe5477cdec39d2f124bb292
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
