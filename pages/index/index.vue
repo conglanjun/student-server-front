@@ -570,7 +570,7 @@
 		}
 	}
 	.category {
-		width: 95%;
+		width: 100%;
 		padding: 2.5vw 2.5vw;
 		background-color: #7ab7ff;
 		.box {
