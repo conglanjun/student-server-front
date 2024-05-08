@@ -1,13 +1,9 @@
 <template>
 	<view>
 		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回" title="导航栏" @clickLeft="back" />
-		<view class="container">
-			<uni-breadcrumb separator="/">
-				<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">
-					{{route.name}}
-				</uni-breadcrumb-item>
-			</uni-breadcrumb>
-		</view>
+		<uni-search-bar @confirm="search" placeholder="搜索姓名" cancelText="取消" :focus="true" v-model="searchValue" @blur="blur" @focus="focus" @input="input"
+			@cancel="cancel" @clear="clear">
+		</uni-search-bar>
 		<view class="uni-container">
 			<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
 				<uni-tr>
@@ -25,6 +21,7 @@
 					<uni-td>
 						<view class="uni-group">
 							<button class="uni-button" size="mini" style="font-size: 8px" type="primary" @click="inputDialogToggle(item)">修改</button>
+							<button class="uni-button" size="mini" style="font-size: 8px" type="warn" @click="deleteUser(item)">删除</button>
 						</view>
 					</uni-td>
 				</uni-tr>
@@ -93,6 +90,10 @@
 				<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="同意" title="删除" content="需要修改权限" @confirm="dialogConfirm"
 					@close="dialogClose"></uni-popup-dialog>
 			</uni-popup>
+			<uni-popup ref="alertDeleteDialog" type="dialog">
+				<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="同意" title="删除" content="需要删除用户吗" @confirm="deleteUserConfirm"
+					@close="deleteUserClose"></uni-popup-dialog>
+			</uni-popup>
 		</view>
 	</view>
 </template>
@@ -123,6 +124,7 @@
 				formData:{},
 				buildingId: '',
 				roomId: '',
+				searchValue: '',
 			}
 		},
 		onLoad() {
@@ -177,14 +179,18 @@
 					}
 				})
 			},
-			listUser() {
+			listUser(name) {
+				var requestUrl = 'api/userList'
+				if (typeof name !== "undefined" && name !== null && name !== '') {
+					requestUrl += '?name=' + name
+				}
 				// list user
 				uni.request({
 					// #ifdef H5
-					url: "api/userList",
+					url: requestUrl,
 					// #endif
 					// #ifdef MP-WEIXIN
-					url: this.$api.defConfig.def().baseUrl + 'api/userList',
+					url: this.$api.defConfig.def().baseUrl + requestUrl,
 					// #endif
 					success: (res) => {
 						this.tableData = res.data.userDataList
@@ -235,6 +241,40 @@
 				this.loadRoomList()
 				this.dialogText = item.text
 				this.$refs.inputDialog.open()
+			},
+			deleteUserConfirm() {
+				uni.request({
+					// #ifdef H5
+					url: 'api/user/delete/' + this.selectedItem.id,
+					// #endif
+					// #ifdef MP-WEIXIN
+					url: this.$api.defConfig.def().baseUrl + 'api/user/delete/' + this.selectedItem.id,
+					// #endif
+					method: 'DELETE',
+					success: (res) => {
+						uni.hideLoading()
+						console.log(res)
+						// 关闭窗口后，恢复默认内容
+						this.$refs.alertDeleteDialog.close()
+						this.listUser()
+						this.selectedItem = {
+							name: '',
+							phone: '',
+							roleId: '',
+							buildingId: '',
+							roomId: '',
+							role:{},
+							room:{}
+						}
+					}
+				})
+			},
+			deleteUserClose() {
+				this.$refs.alertDeleteDialog.close()
+			},
+			deleteUser(item) {
+				this.selectedItem = item
+				this.$refs.alertDeleteDialog.open()
 			},
 			dialogConfirm() {
 				console.log('点击确认')
@@ -287,6 +327,45 @@
 					url: "/pages/index/index",
 				})
 			},
+			search(res) {
+				// uni.showToast({
+				// 	title: '搜索：' + res.value,
+				// 	icon: 'none'
+				// })
+				this.listUser(res.value)
+			},
+			input(res) {
+				// console.log('----input:', res)
+			},
+			clear(res) {
+				uni.showToast({
+					title: 'clear事件，清除值为：' + res.value,
+					icon: 'none'
+				})
+			},
+			blur(res) {
+				// uni.showToast({
+				// 	title: 'blur事件，输入值为：' + res.value,
+				// 	icon: 'none'
+				// })
+			},
+			focus(e) {
+				// uni.showToast({
+				// 	title: 'focus事件，输出值为：' + e.value,
+				// 	icon: 'none'
+				// })
+			},
+			cancel(res) {
+				// uni.showToast({
+				// 	title: '点击取消，输入值为：' + res.value,
+				// 	icon: 'none'
+				// })
+			}
+		},
+		onBackPress() {
+			// #ifdef APP-PLUS
+			plus.key.hideSoftKeybord();
+			// #endif
 		}
 	}
 </script>
@@ -305,5 +384,27 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
+}
+.search-result {
+	padding-top: 10px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.search-result-text {
+	text-align: center;
+	font-size: 14px;
+	color:#666;
+}
+
+.example-body {
+	/* #ifndef APP-NVUE */
+	display: block;
+	/* #endif */
+	padding: 0px;
+}
+
+.uni-mt-10 {
+	margin-top: 10px;
 }
 </style>
