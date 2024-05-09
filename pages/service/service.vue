@@ -139,7 +139,7 @@
 				requestUrl += '?maintainerId=' + get('loginInfo').id
 			} else if (userInfo?.role?.name === "dormitory-manager") {
 				requestUrl += '?dormitoryManagerId=' + get('loginInfo').id
-			} else if (userInfo?.role?.name === 'maintenance-manager') {
+			} else if (userInfo?.role?.name === 'maintenance-manager' || userInfo?.role?.name === "admin") {
 				this.showTypeStatistics = true
 			}
 			uni.request({
@@ -240,7 +240,7 @@
 					requestUrl += '?dormitoryManagerId=' + get('loginInfo').id
 				}
 				if (typeof status !== 'undefined' && status !== null && status !== 'null' && status !== '') {
-					if (userInfo?.role?.name === "maintenance-manager") {
+					if (userInfo?.role?.name === "maintenance-manager"|| userInfo?.role?.name === "admin") {
 						requestUrl += '?status=' + status
 					} else {
 						requestUrl += '&status=' + status

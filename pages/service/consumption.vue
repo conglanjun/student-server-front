@@ -40,10 +40,10 @@
 						<view>
 							<uni-row class="demo-uni-row">
 								<uni-col :span="12">
-									<button class="container left-aligned-button uni-bg-blue1" @click="addDialogClose" style="background-color: #b88e22;font-size: 12px; color: white; margin: 10px 10px;">关闭</button>
+									<button class="container uni-bg-blue1" @click="addDialogClose" style="background-color: #b88e22;font-size: 12px; color: white; margin: 10px 10px;">关闭</button>
 								</uni-col>
 								<uni-col :span="12">
-									<button  class="container left-aligned-button uni-bg-blue1" @click="addDialogConfirm(formData.id)" style="background-color: #b88e22;font-size: 12px; color: white; margin: 10px 10px;">确认</button>
+									<button  class="container uni-bg-blue1" @click="addDialogConfirm(formData.id)" style="background-color: #b88e22;font-size: 12px; color: white; margin: 10px 10px;">确认</button>
 								</uni-col>
 							</uni-row>
 						</view>

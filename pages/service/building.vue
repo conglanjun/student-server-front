@@ -164,30 +164,31 @@
 						title: '更新宿舍'
 					})
 				}
-				uni.request({
-					// #ifdef H5
-					url: 'api/building/name/check',
-					// #endif
-					// #ifdef MP-WEIXIN
-					url: this.$api.defConfig.def().baseUrl + 'api/building/name/check',
-					// #endif
-					method: 'POST',
-					data: {
-					    name: this.formData.name
-					},
-					success: (res) => {
-						if (res.data.code === 200) {
-							if (res.data.buildingData.nameDuplicated) {
-								uni.showToast({
-									title: '名字已经存在，请更换名字',
-									icon: 'error'
-								})
-							} else {
-								this.buildingSave(id);
-							}
-						}
-					}
-				})
+				// uni.request({
+				// 	// #ifdef H5
+				// 	url: 'api/building/name/check',
+				// 	// #endif
+				// 	// #ifdef MP-WEIXIN
+				// 	url: this.$api.defConfig.def().baseUrl + 'api/building/name/check',
+				// 	// #endif
+				// 	method: 'POST',
+				// 	data: {
+				// 	    name: this.formData.name
+				// 	},
+				// 	success: (res) => {
+				// 		if (res.data.code === 200) {
+				// 			if (res.data.buildingData.nameDuplicated) {
+				// 				uni.showToast({
+				// 					title: '名字已经存在，请更换名字',
+				// 					icon: 'error'
+				// 				})
+				// 			} else {
+				// 				this.buildingSave(id);
+				// 			}
+				// 		}
+				// 	}
+				// })
+				this.buildingSave(id);
 				this.selectedItem = null
 				this.dialogText = ''
 			},

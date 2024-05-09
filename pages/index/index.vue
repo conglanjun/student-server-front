@@ -333,6 +333,7 @@
 				categries.push({ cat_id: 4, key: 'notice', img: '/static/notice.png', title: '公告管理' })
 				categries.push({ cat_id: 5, key: 'serviceType', img: '/static/serviceType.png', title: '维修类型' })
 				categries.push({ cat_id: 9, key : 'message', img: '/static/message.png', title: '留言' })
+				categries.push({ cat_id: 13, key: 'service', img: '/static/statistics.png', title: '订单统计' })
 			} else if (this?.user?.role?.name === 'student') {
 				categries.push({ cat_id: 12, key: 'tool', img: '/static/tool.png', title: '维修申请' })
 				categries.push({ cat_id: 14, key: 'progress', img: '/static/progress.png', title: '维修进度' })
